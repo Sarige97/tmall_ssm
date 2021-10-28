@@ -1,5 +1,7 @@
 package com.sarige.tmall.util;
 
+import org.junit.Test;
+
 public class Page {
 
     private int start;//开始页数
@@ -110,4 +112,5 @@ public class Page {
                 ", params='" + param + '\'' +
                 '}';
     }
+
 }

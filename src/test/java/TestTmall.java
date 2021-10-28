@@ -1,3 +1,4 @@
+import com.sarige.tmall.util.Page;
 import org.junit.Test;
 
 import java.sql.Connection;
@@ -10,6 +11,12 @@ public class TestTmall {
     @Test
     public void sout(){
         System.out.println("中文");
+    }
+
+    @Test
+    public void test(){
+        Page page = new Page();
+        System.out.println(page);
     }
 
     public static void main(String[] args) {

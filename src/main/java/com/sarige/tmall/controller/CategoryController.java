@@ -29,11 +29,13 @@ public class CategoryController {
 
     @RequestMapping("admin_category_list")
     public String list(Model model, Page page) {
+        logger.info(page);
         List<Category> categoryList = categoryService.list(page);
         int total = categoryService.total();
         page.setTotal(total);
         model.addAttribute("categoryList", categoryList);
         model.addAttribute("page", page);
+        logger.info(page);
         return "admin/listCategory";
     }
 
