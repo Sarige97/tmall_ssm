@@ -38,7 +38,6 @@ public class CategoryController {
 
     @RequestMapping("admin_category_add")
     public String add(Category category, HttpSession session, MultipartFile image) throws IOException {
-        System.out.println(image);
         categoryService.add(category);
         File imageFolder = new File(session.getServletContext().getRealPath("img/category"));
         File file = new File(imageFolder, category.getId() + ".jpg");
@@ -72,8 +71,6 @@ public class CategoryController {
 
     @RequestMapping("admin_category_update")
     public String update(Category category, HttpSession session, MultipartFile image) throws IOException {
-        System.out.println(image);
-        System.out.println(category);
         categoryService.update(category);
         String imgPath = session.getServletContext().getRealPath("img/category/") + category.getId() + ".jpg";
         File imgFile = new File(imgPath);
