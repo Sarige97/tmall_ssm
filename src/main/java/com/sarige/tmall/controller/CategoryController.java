@@ -4,7 +4,6 @@ import com.sarige.tmall.pojo.Category;
 import com.sarige.tmall.service.CategoryService;
 import com.sarige.tmall.util.ImageUtil;
 import com.sarige.tmall.util.Page;
-import com.sarige.tmall.util.UploadedImageFile;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,18 +28,17 @@ public class CategoryController {
 
     @RequestMapping("admin_category_list")
     public String list(Model model, Page page) {
-        logger.info(page);
         List<Category> categoryList = categoryService.list(page);
         int total = categoryService.total();
         page.setTotal(total);
         model.addAttribute("categoryList", categoryList);
         model.addAttribute("page", page);
-        logger.info(page);
         return "admin/listCategory";
     }
 
     @RequestMapping("admin_category_add")
     public String add(Category category, HttpSession session, MultipartFile image) throws IOException {
+        System.out.println(image);
         categoryService.add(category);
         File imageFolder = new File(session.getServletContext().getRealPath("img/category"));
         File file = new File(imageFolder, category.getId() + ".jpg");
@@ -73,11 +71,16 @@ public class CategoryController {
     }
 
     @RequestMapping("admin_category_update")
-    public String update(Category category, HttpSession session, MultipartFile image) {
+    public String update(Category category, HttpSession session, MultipartFile image) throws IOException {
+        System.out.println(image);
+        System.out.println(category);
         categoryService.update(category);
         String imgPath = session.getServletContext().getRealPath("img/category/") + category.getId() + ".jpg";
         File imgFile = new File(imgPath);
-
+        image.transferTo(imgFile);
+        BufferedImage bufferedImage = ImageUtil.change2jpg(imgFile);
+        assert bufferedImage != null;
+        ImageIO.write(bufferedImage, "jpg", imgFile);
         return "admin/editCategory";
     }
 

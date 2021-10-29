@@ -71,7 +71,7 @@
                 <table class="addTable">
                     <tr>
                         <td>分类名称</td>
-                        <td><input id="name" name="name" type="text" class="form-control"></td>
+                        <td><input id="name" name="name" type="text" class="form-control"/></td>
                     </tr>
                     <tr>
                         <td>分类圖片</td>
