@@ -16,13 +16,8 @@ public class CategoryServiceImpl implements CategoryService {
     CategoryMapper categoryMapper;
 
     @Override
-    public List<Category> list(Page page) {
-        return categoryMapper.list(page);
-    }
-
-    @Override
-    public int total() {
-        return categoryMapper.total();
+    public List<Category> list() {
+        return categoryMapper.list();
     }
 
     @Override
