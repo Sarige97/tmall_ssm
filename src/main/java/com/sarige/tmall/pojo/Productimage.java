@@ -1,12 +1,19 @@
 package com.sarige.tmall.pojo;
 
-public class ProductImage {
-    private static final long serialVersionUID = 1L;
+import java.io.Serializable;
+
+/**
+ * productimage
+ * @author 
+ */
+public class Productimage implements Serializable {
     private Integer id;
 
     private Integer pid;
 
     private String type;
+
+    private static final long serialVersionUID = 1L;
 
     public Integer getId() {
         return id;
@@ -33,19 +40,6 @@ public class ProductImage {
     }
 
     @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", pid=").append(pid);
-        sb.append(", type=").append(type);
-        sb.append("]");
-        return sb.toString();
-    }
-
-    @Override
     public boolean equals(Object that) {
         if (this == that) {
             return true;
@@ -56,10 +50,10 @@ public class ProductImage {
         if (getClass() != that.getClass()) {
             return false;
         }
-        ProductImage other = (ProductImage) that;
+        Productimage other = (Productimage) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-                && (this.getPid() == null ? other.getPid() == null : this.getPid().equals(other.getPid()))
-                && (this.getType() == null ? other.getType() == null : this.getType().equals(other.getType()));
+            && (this.getPid() == null ? other.getPid() == null : this.getPid().equals(other.getPid()))
+            && (this.getType() == null ? other.getType() == null : this.getType().equals(other.getType()));
     }
 
     @Override
@@ -70,5 +64,19 @@ public class ProductImage {
         result = prime * result + ((getPid() == null) ? 0 : getPid().hashCode());
         result = prime * result + ((getType() == null) ? 0 : getType().hashCode());
         return result;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", pid=").append(pid);
+        sb.append(", type=").append(type);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append("]");
+        return sb.toString();
     }
 }

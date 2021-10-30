@@ -9,7 +9,7 @@
     <result column="receiver" jdbcType="VARCHAR" property="receiver" />
     <result column="mobile" jdbcType="VARCHAR" property="mobile" />
     <result column="userMessage" jdbcType="VARCHAR" property="usermessage" />
-    <result column="createDate" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="createDate" jdbcType="TIMESTAMP" property="createdate" />
     <result column="payDate" jdbcType="TIMESTAMP" property="paydate" />
     <result column="deliveryDate" jdbcType="TIMESTAMP" property="deliverydate" />
     <result column="confirmDate" jdbcType="TIMESTAMP" property="confirmdate" />
@@ -124,7 +124,7 @@
       )
     values (#{ordercode,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{post,jdbcType=VARCHAR}, 
       #{receiver,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{usermessage,jdbcType=VARCHAR}, 
-      #{createDate,jdbcType=TIMESTAMP}, #{paydate,jdbcType=TIMESTAMP}, #{deliverydate,jdbcType=TIMESTAMP},
+      #{createdate,jdbcType=TIMESTAMP}, #{paydate,jdbcType=TIMESTAMP}, #{deliverydate,jdbcType=TIMESTAMP}, 
       #{confirmdate,jdbcType=TIMESTAMP}, #{uid,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}
       )
   </insert>
@@ -149,7 +149,7 @@
       <if test="usermessage != null">
         userMessage,
       </if>
-      <if test="createDate != null">
+      <if test="createdate != null">
         createDate,
       </if>
       <if test="paydate != null">
@@ -187,8 +187,8 @@
       <if test="usermessage != null">
         #{usermessage,jdbcType=VARCHAR},
       </if>
-      <if test="createDate != null">
-        #{createDate,jdbcType=TIMESTAMP},
+      <if test="createdate != null">
+        #{createdate,jdbcType=TIMESTAMP},
       </if>
       <if test="paydate != null">
         #{paydate,jdbcType=TIMESTAMP},
@@ -237,8 +237,8 @@
       <if test="record.usermessage != null">
         userMessage = #{record.usermessage,jdbcType=VARCHAR},
       </if>
-      <if test="record.createDate != null">
-        createDate = #{record.createDate,jdbcType=TIMESTAMP},
+      <if test="record.createdate != null">
+        createDate = #{record.createdate,jdbcType=TIMESTAMP},
       </if>
       <if test="record.paydate != null">
         payDate = #{record.paydate,jdbcType=TIMESTAMP},
@@ -269,7 +269,7 @@
       receiver = #{record.receiver,jdbcType=VARCHAR},
       mobile = #{record.mobile,jdbcType=VARCHAR},
       userMessage = #{record.usermessage,jdbcType=VARCHAR},
-      createDate = #{record.createDate,jdbcType=TIMESTAMP},
+      createDate = #{record.createdate,jdbcType=TIMESTAMP},
       payDate = #{record.paydate,jdbcType=TIMESTAMP},
       deliveryDate = #{record.deliverydate,jdbcType=TIMESTAMP},
       confirmDate = #{record.confirmdate,jdbcType=TIMESTAMP},
@@ -300,8 +300,8 @@
       <if test="usermessage != null">
         userMessage = #{usermessage,jdbcType=VARCHAR},
       </if>
-      <if test="createDate != null">
-        createDate = #{createDate,jdbcType=TIMESTAMP},
+      <if test="createdate != null">
+        createDate = #{createdate,jdbcType=TIMESTAMP},
       </if>
       <if test="paydate != null">
         payDate = #{paydate,jdbcType=TIMESTAMP},
@@ -329,7 +329,7 @@
       receiver = #{receiver,jdbcType=VARCHAR},
       mobile = #{mobile,jdbcType=VARCHAR},
       userMessage = #{usermessage,jdbcType=VARCHAR},
-      createDate = #{createDate,jdbcType=TIMESTAMP},
+      createDate = #{createdate,jdbcType=TIMESTAMP},
       payDate = #{paydate,jdbcType=TIMESTAMP},
       deliveryDate = #{deliverydate,jdbcType=TIMESTAMP},
       confirmDate = #{confirmdate,jdbcType=TIMESTAMP},

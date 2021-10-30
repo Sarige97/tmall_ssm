@@ -4,8 +4,7 @@ import java.io.Serializable;
 
 /**
  * property
- *
- * @author
+ * @author 
  */
 public class Property implements Serializable {
     private Integer id;
@@ -63,8 +62,8 @@ public class Property implements Serializable {
         }
         Property other = (Property) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-                && (this.getCid() == null ? other.getCid() == null : this.getCid().equals(other.getCid()))
-                && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()));
+            && (this.getCid() == null ? other.getCid() == null : this.getCid().equals(other.getCid()))
+            && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()));
     }
 
     @Override

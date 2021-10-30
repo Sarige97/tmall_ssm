@@ -5,24 +5,25 @@ import java.util.Date;
 
 /**
  * product
- * @author 
+ *
+ * @author
  */
 public class Product implements Serializable {
     private Integer id;
 
     private String name;
 
-    private String subTitle;
+    private String subtitle;
 
-    private Double originalPrice;
+    private Double originalprice;
 
-    private Double promotePrice;
+    private Double promoteprice;
 
     private Integer stock;
 
     private Integer cid;
 
-    private Date createDate;
+    private Date createdate;
 
     private Category category;
 
@@ -44,28 +45,28 @@ public class Product implements Serializable {
         this.name = name;
     }
 
-    public String getSubTitle() {
-        return subTitle;
+    public String getSubtitle() {
+        return subtitle;
     }
 
-    public void setSubTitle(String subTitle) {
-        this.subTitle = subTitle;
+    public void setSubtitle(String subtitle) {
+        this.subtitle = subtitle;
     }
 
-    public Double getOriginalPrice() {
-        return originalPrice;
+    public Double getOriginalprice() {
+        return originalprice;
     }
 
-    public void setOriginalPrice(Double originalPrice) {
-        this.originalPrice = originalPrice;
+    public void setOriginalprice(Double originalprice) {
+        this.originalprice = originalprice;
     }
 
-    public Double getPromotePrice() {
-        return promotePrice;
+    public Double getPromoteprice() {
+        return promoteprice;
     }
 
-    public void setPromotePrice(Double promotePrice) {
-        this.promotePrice = promotePrice;
+    public void setPromoteprice(Double promoteprice) {
+        this.promoteprice = promoteprice;
     }
 
     public Integer getStock() {
@@ -84,12 +85,12 @@ public class Product implements Serializable {
         this.cid = cid;
     }
 
-    public Date getCreateDate() {
-        return createDate;
+    public Date getCreatedate() {
+        return createdate;
     }
 
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
+    public void setCreatedate(Date createdate) {
+        this.createdate = createdate;
     }
 
     public Category getCategory() {
@@ -113,13 +114,13 @@ public class Product implements Serializable {
         }
         Product other = (Product) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
-            && (this.getSubTitle() == null ? other.getSubTitle() == null : this.getSubTitle().equals(other.getSubTitle()))
-            && (this.getOriginalPrice() == null ? other.getOriginalPrice() == null : this.getOriginalPrice().equals(other.getOriginalPrice()))
-            && (this.getPromotePrice() == null ? other.getPromotePrice() == null : this.getPromotePrice().equals(other.getPromotePrice()))
-            && (this.getStock() == null ? other.getStock() == null : this.getStock().equals(other.getStock()))
-            && (this.getCid() == null ? other.getCid() == null : this.getCid().equals(other.getCid()))
-            && (this.getCreateDate() == null ? other.getCreateDate() == null : this.getCreateDate().equals(other.getCreateDate()));
+                && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
+                && (this.getSubtitle() == null ? other.getSubtitle() == null : this.getSubtitle().equals(other.getSubtitle()))
+                && (this.getOriginalprice() == null ? other.getOriginalprice() == null : this.getOriginalprice().equals(other.getOriginalprice()))
+                && (this.getPromoteprice() == null ? other.getPromoteprice() == null : this.getPromoteprice().equals(other.getPromoteprice()))
+                && (this.getStock() == null ? other.getStock() == null : this.getStock().equals(other.getStock()))
+                && (this.getCid() == null ? other.getCid() == null : this.getCid().equals(other.getCid()))
+                && (this.getCreatedate() == null ? other.getCreatedate() == null : this.getCreatedate().equals(other.getCreatedate()));
     }
 
     @Override
@@ -128,12 +129,12 @@ public class Product implements Serializable {
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
         result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
-        result = prime * result + ((getSubTitle() == null) ? 0 : getSubTitle().hashCode());
-        result = prime * result + ((getOriginalPrice() == null) ? 0 : getOriginalPrice().hashCode());
-        result = prime * result + ((getPromotePrice() == null) ? 0 : getPromotePrice().hashCode());
+        result = prime * result + ((getSubtitle() == null) ? 0 : getSubtitle().hashCode());
+        result = prime * result + ((getOriginalprice() == null) ? 0 : getOriginalprice().hashCode());
+        result = prime * result + ((getPromoteprice() == null) ? 0 : getPromoteprice().hashCode());
         result = prime * result + ((getStock() == null) ? 0 : getStock().hashCode());
         result = prime * result + ((getCid() == null) ? 0 : getCid().hashCode());
-        result = prime * result + ((getCreateDate() == null) ? 0 : getCreateDate().hashCode());
+        result = prime * result + ((getCreatedate() == null) ? 0 : getCreatedate().hashCode());
         return result;
     }
 
@@ -145,12 +146,12 @@ public class Product implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", name=").append(name);
-        sb.append(", subtitle=").append(subTitle);
-        sb.append(", originalPrice=").append(originalPrice);
-        sb.append(", promotePrice=").append(promotePrice);
+        sb.append(", subtitle=").append(subtitle);
+        sb.append(", originalprice=").append(originalprice);
+        sb.append(", promoteprice=").append(promoteprice);
         sb.append(", stock=").append(stock);
         sb.append(", cid=").append(cid);
-        sb.append(", createDate=").append(createDate);
+        sb.append(", createdate=").append(createdate);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

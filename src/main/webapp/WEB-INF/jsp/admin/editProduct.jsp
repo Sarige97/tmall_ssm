@@ -12,11 +12,11 @@
         $("#editForm").submit(function() {
             if (!checkEmpty("name", "产品名称"))
                 return false;
-//          if (!checkEmpty("subTitle", "小标题"))
-//              return false;
-            if (!checkNumber("originalPrice", "原价格"))
+         if (!checkEmpty("subtitle", "小标题"))
+             return false;
+            if (!checkNumber("originalprice", "原价格"))
                 return false;
-            if (!checkNumber("promotePrice", "优惠价格"))
+            if (!checkNumber("promoteprice", "优惠价格"))
                 return false;
             if (!checkInt("stock", "库存"))
                 return false;
@@ -39,24 +39,24 @@
             <form method="post" id="editForm" action="admin_product_update">
                 <table class="editTable">
                     <tr>
-                        <td>产品名称</td>
+                        <td><label for="name">产品名称</label></td>
                         <td><input id="name" name="name" value="${product.name}"
                                    type="text" class="form-control"></td>
                     </tr>
                     <tr>
                         <td>产品小标题</td>
-                        <td><input id="subTitle" name="subTitle" type="text"
-                                   value="${product.subTitle}"
+                        <td><input id="subtitle" name="subtitle" type="text"
+                                   value="${product.subtitle}"
                                    class="form-control"></td>
                     </tr>
                     <tr>
                         <td>原价格</td>
-                        <td><input id="originalPrice" value="${product.originalPrice}" name="originalPrice" type="text"
+                        <td><input id="originalPrice" value="${product.originalprice}" name="originalprice" type="text"
                                    class="form-control"></td>
                     </tr>
                     <tr>
                         <td>优惠价格</td>
-                        <td><input id="promotePrice"  value="${product.promotePrice}" name="promotePrice" type="text"
+                        <td><input id="promotePrice"  value="${product.promoteprice}" name="promoteprice" type="text"
                                    class="form-control"></td>
                     </tr>
                     <tr>

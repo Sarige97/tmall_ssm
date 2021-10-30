@@ -4,12 +4,12 @@
   <resultMap id="BaseResultMap" type="com.sarige.tmall.pojo.Product">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="subTitle" jdbcType="VARCHAR" property="subTitle" />
-    <result column="originalPrice" jdbcType="FLOAT" property="originalPrice" />
-    <result column="promotePrice" jdbcType="FLOAT" property="promotePrice" />
+    <result column="subTitle" jdbcType="VARCHAR" property="subtitle" />
+    <result column="originalPrice" jdbcType="FLOAT" property="originalprice" />
+    <result column="promotePrice" jdbcType="FLOAT" property="promoteprice" />
     <result column="stock" jdbcType="INTEGER" property="stock" />
     <result column="cid" jdbcType="INTEGER" property="cid" />
-    <result column="createDate" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="createDate" jdbcType="TIMESTAMP" property="createdate" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -114,9 +114,9 @@
     insert into product (`name`, subTitle, originalPrice, 
       promotePrice, stock, cid, 
       createDate)
-    values (#{name,jdbcType=VARCHAR}, #{subTitle,jdbcType=VARCHAR}, #{originalPrice,jdbcType=FLOAT},
-      #{promotePrice,jdbcType=FLOAT}, #{stock,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER},
-      #{createDate,jdbcType=TIMESTAMP})
+    values (#{name,jdbcType=VARCHAR}, #{subtitle,jdbcType=VARCHAR}, #{originalprice,jdbcType=FLOAT}, 
+      #{promoteprice,jdbcType=FLOAT}, #{stock,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER}, 
+      #{createdate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.sarige.tmall.pojo.Product" useGeneratedKeys="true">
     insert into product
@@ -124,13 +124,13 @@
       <if test="name != null">
         `name`,
       </if>
-      <if test="subTitle != null">
+      <if test="subtitle != null">
         subTitle,
       </if>
-      <if test="originalPrice != null">
+      <if test="originalprice != null">
         originalPrice,
       </if>
-      <if test="promotePrice != null">
+      <if test="promoteprice != null">
         promotePrice,
       </if>
       <if test="stock != null">
@@ -139,7 +139,7 @@
       <if test="cid != null">
         cid,
       </if>
-      <if test="createDate != null">
+      <if test="createdate != null">
         createDate,
       </if>
     </trim>
@@ -147,14 +147,14 @@
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="subTitle != null">
-        #{subTitle,jdbcType=VARCHAR},
+      <if test="subtitle != null">
+        #{subtitle,jdbcType=VARCHAR},
       </if>
-      <if test="originalPrice != null">
-        #{originalPrice,jdbcType=FLOAT},
+      <if test="originalprice != null">
+        #{originalprice,jdbcType=FLOAT},
       </if>
-      <if test="promotePrice != null">
-        #{promotePrice,jdbcType=FLOAT},
+      <if test="promoteprice != null">
+        #{promoteprice,jdbcType=FLOAT},
       </if>
       <if test="stock != null">
         #{stock,jdbcType=INTEGER},
@@ -162,8 +162,8 @@
       <if test="cid != null">
         #{cid,jdbcType=INTEGER},
       </if>
-      <if test="createDate != null">
-        #{createDate,jdbcType=TIMESTAMP},
+      <if test="createdate != null">
+        #{createdate,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -182,14 +182,14 @@
       <if test="record.name != null">
         `name` = #{record.name,jdbcType=VARCHAR},
       </if>
-      <if test="record.subTitle != null">
-        subTitle = #{record.subTitle,jdbcType=VARCHAR},
+      <if test="record.subtitle != null">
+        subTitle = #{record.subtitle,jdbcType=VARCHAR},
       </if>
-      <if test="record.originalPrice != null">
-        originalPrice = #{record.originalPrice,jdbcType=FLOAT},
+      <if test="record.originalprice != null">
+        originalPrice = #{record.originalprice,jdbcType=FLOAT},
       </if>
-      <if test="record.promotePrice != null">
-        promotePrice = #{record.promotePrice,jdbcType=FLOAT},
+      <if test="record.promoteprice != null">
+        promotePrice = #{record.promoteprice,jdbcType=FLOAT},
       </if>
       <if test="record.stock != null">
         stock = #{record.stock,jdbcType=INTEGER},
@@ -197,8 +197,8 @@
       <if test="record.cid != null">
         cid = #{record.cid,jdbcType=INTEGER},
       </if>
-      <if test="record.createDate != null">
-        createDate = #{record.createDate,jdbcType=TIMESTAMP},
+      <if test="record.createdate != null">
+        createDate = #{record.createdate,jdbcType=TIMESTAMP},
       </if>
     </set>
     <if test="_parameter != null">
@@ -209,12 +209,12 @@
     update product
     set id = #{record.id,jdbcType=INTEGER},
       `name` = #{record.name,jdbcType=VARCHAR},
-      subTitle = #{record.subTitle,jdbcType=VARCHAR},
-      originalPrice = #{record.originalPrice,jdbcType=FLOAT},
-      promotePrice = #{record.promotePrice,jdbcType=FLOAT},
+      subTitle = #{record.subtitle,jdbcType=VARCHAR},
+      originalPrice = #{record.originalprice,jdbcType=FLOAT},
+      promotePrice = #{record.promoteprice,jdbcType=FLOAT},
       stock = #{record.stock,jdbcType=INTEGER},
       cid = #{record.cid,jdbcType=INTEGER},
-      createDate = #{record.createDate,jdbcType=TIMESTAMP}
+      createDate = #{record.createdate,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -225,14 +225,14 @@
       <if test="name != null">
         `name` = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="subTitle != null">
-        subTitle = #{subTitle,jdbcType=VARCHAR},
+      <if test="subtitle != null">
+        subTitle = #{subtitle,jdbcType=VARCHAR},
       </if>
-      <if test="originalPrice != null">
-        originalPrice = #{originalPrice,jdbcType=FLOAT},
+      <if test="originalprice != null">
+        originalPrice = #{originalprice,jdbcType=FLOAT},
       </if>
-      <if test="promotePrice != null">
-        promotePrice = #{promotePrice,jdbcType=FLOAT},
+      <if test="promoteprice != null">
+        promotePrice = #{promoteprice,jdbcType=FLOAT},
       </if>
       <if test="stock != null">
         stock = #{stock,jdbcType=INTEGER},
@@ -240,8 +240,8 @@
       <if test="cid != null">
         cid = #{cid,jdbcType=INTEGER},
       </if>
-      <if test="createDate != null">
-        createDate = #{createDate,jdbcType=TIMESTAMP},
+      <if test="createdate != null">
+        createDate = #{createdate,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -249,12 +249,12 @@
   <update id="updateByPrimaryKey" parameterType="com.sarige.tmall.pojo.Product">
     update product
     set `name` = #{name,jdbcType=VARCHAR},
-      subTitle = #{subTitle,jdbcType=VARCHAR},
-      originalPrice = #{originalPrice,jdbcType=FLOAT},
-      promotePrice = #{promotePrice,jdbcType=FLOAT},
+      subTitle = #{subtitle,jdbcType=VARCHAR},
+      originalPrice = #{originalprice,jdbcType=FLOAT},
+      promotePrice = #{promoteprice,jdbcType=FLOAT},
       stock = #{stock,jdbcType=INTEGER},
       cid = #{cid,jdbcType=INTEGER},
-      createDate = #{createDate,jdbcType=TIMESTAMP}
+      createDate = #{createdate,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

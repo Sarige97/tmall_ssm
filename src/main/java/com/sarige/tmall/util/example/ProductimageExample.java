@@ -3,7 +3,7 @@ package com.sarige.tmall.util.example;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductImageExample {
+public class ProductimageExample {
     protected String orderByClause;
 
     protected boolean distinct;
@@ -14,7 +14,7 @@ public class ProductImageExample {
 
     private Long offset;
 
-    public ProductImageExample() {
+    public ProductimageExample() {
         oredCriteria = new ArrayList<>();
     }
 

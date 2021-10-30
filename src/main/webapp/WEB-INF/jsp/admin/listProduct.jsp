@@ -63,11 +63,11 @@
 
                     </td>
                     <td>${product.name}</td>
-                    <td>${product.subTitle}</td>
-                    <td>${product.originalPrice}</td>
-                    <td>${product.promotePrice}</td>
+                    <td>${product.subtitle}</td>
+                    <td>${product.originalprice}</td>
+                    <td>${product.promoteprice}</td>
                     <td>${product.stock}</td>
-                    <td><a href="admin_productImage_list?pid=${product.id}"><span
+                    <td><a href="admin_productImage_list?productId=${product.id}"><span
                             class="glyphicon glyphicon-picture"></span></a></td>
                     <td><a href="admin_propertyValue_edit?pid=${product.id}"><span
                             class="glyphicon glyphicon-th-list"></span></a></td>
@@ -100,17 +100,17 @@
                     </tr>
                     <tr>
                         <td>产品小标题</td>
-                        <td><input id="subTitle" name="subTitle" type="text"
+                        <td><input id="subTitle" name="subtitle" type="text"
                                    class="form-control"></td>
                     </tr>
                     <tr>
                         <td>原价格</td>
-                        <td><input id="originalPrice" value="99.98" name="originalPrice" type="text"
+                        <td><input id="originalPrice" value="99.98" name="originalprice" type="text"
                                    class="form-control"></td>
                     </tr>
                     <tr>
                         <td>优惠价格</td>
-                        <td><input id="promotePrice"  value="19.98" name="promotePrice" type="text"
+                        <td><input id="promotePrice"  value="19.98" name="promoteprice" type="text"
                                    class="form-control"></td>
                     </tr>
                     <tr>

@@ -29,20 +29,99 @@
         <option name="p3CComment" value="true" />
         <option name="tableGenerateConfigs">
           <map>
+            <entry key="tmall_ssm:category">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="id" />
+                  <option name="javaModelName" value="Category" />
+                  <option name="moduleName" value="tmall_ssm" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="tmall_ssm:order_">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="id" />
+                  <option name="javaModelName" value="Order" />
+                  <option name="moduleName" value="tmall_ssm" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="tmall_ssm:orderitem">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="id" />
+                  <option name="javaModelName" value="Orderitem" />
+                  <option name="moduleName" value="tmall_ssm" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="tmall_ssm:product">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="id" />
+                  <option name="javaModelName" value="Product" />
+                  <option name="moduleName" value="tmall_ssm" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
             <entry key="tmall_ssm:productimage">
               <value>
                 <TableGenerateConfig>
                   <option name="generatedKey" value="id" />
-                  <option name="javaModelName" value="ProductImage" />
+                  <option name="javaModelName" value="Productimage" />
                   <option name="moduleName" value="tmall_ssm" />
-                  <option name="sequenceColumn" value="" />
-                  <option name="sequenceId" value="" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="tmall_ssm:property">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="id" />
+                  <option name="javaModelName" value="Property" />
+                  <option name="moduleName" value="tmall_ssm" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="tmall_ssm:propertyvalue">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="id" />
+                  <option name="javaModelName" value="Propertyvalue" />
+                  <option name="moduleName" value="tmall_ssm" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="tmall_ssm:review">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="id" />
+                  <option name="javaModelName" value="Review" />
+                  <option name="moduleName" value="tmall_ssm" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="tmall_ssm:user">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="id" />
+                  <option name="javaModelName" value="User" />
+                  <option name="moduleName" value="tmall_ssm" />
                   <option name="useActualColumnName" value="false" />
                 </TableGenerateConfig>
               </value>
             </entry>
           </map>
         </option>
+        <option name="useExample" value="true" />
         <option name="xmlMapperPackage" value="mapper" />
         <option name="xmlMapperPath" value="$PROJECT_DIR$/src/main/resources" />
       </ProjectProfile>
