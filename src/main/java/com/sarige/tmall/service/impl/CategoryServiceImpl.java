@@ -1,9 +1,9 @@
 package com.sarige.tmall.service.impl;
 
-import com.sarige.tmall.mapper.CategoryMapper;
+import com.sarige.tmall.mapper.*;
 import com.sarige.tmall.pojo.Category;
+import com.sarige.tmall.util.example.CategoryExample;
 import com.sarige.tmall.service.CategoryService;
-import com.sarige.tmall.util.Page;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -17,26 +17,28 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<Category> list() {
-        return categoryMapper.list();
+        CategoryExample categoryExample = new CategoryExample();
+        categoryExample.setOrderByClause("id desc");
+        return categoryMapper.selectByExample(categoryExample);
     }
 
     @Override
     public void add(Category category) {
-        categoryMapper.add(category);
+        categoryMapper.insert(category);
     }
 
     @Override
     public void delete(int id) {
-        categoryMapper.delete(id);
+        categoryMapper.deleteByPrimaryKey(id);
     }
 
     @Override
     public Category get(int id) {
-        return categoryMapper.get(id);
+        return categoryMapper.selectByPrimaryKey(id);
     }
 
     @Override
     public void update(Category category) {
-        categoryMapper.update(category);
+        categoryMapper.updateByPrimaryKey(category);
     }
 }

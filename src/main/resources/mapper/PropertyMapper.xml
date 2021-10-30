@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sarige.tmall.mapper.CategoryMapper">
-  <resultMap id="BaseResultMap" type="com.sarige.tmall.pojo.Category">
+<mapper namespace="com.sarige.tmall.mapper.PropertyMapper">
+  <resultMap id="BaseResultMap" type="com.sarige.tmall.pojo.Property">
     <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="cid" jdbcType="INTEGER" property="cid" />
     <result column="name" jdbcType="VARCHAR" property="name" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -64,15 +65,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, `name`
+    id, cid, `name`
   </sql>
-  <select id="selectByExample" parameterType="com.sarige.tmall.util.example.CategoryExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.sarige.tmall.util.example.PropertyExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from category
+    from property
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -91,47 +92,56 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from category
+    from property
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from category
+    delete from property
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.sarige.tmall.util.example.CategoryExample">
-    delete from category
+  <delete id="deleteByExample" parameterType="com.sarige.tmall.util.example.PropertyExample">
+    delete from property
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.sarige.tmall.pojo.Category" useGeneratedKeys="true">
-    insert into category (`name`)
-    values (#{name,jdbcType=VARCHAR})
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.sarige.tmall.pojo.Property" useGeneratedKeys="true">
+    insert into property (cid, `name`)
+    values (#{cid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.sarige.tmall.pojo.Category" useGeneratedKeys="true">
-    insert into category
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.sarige.tmall.pojo.Property" useGeneratedKeys="true">
+    insert into property
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cid != null">
+        cid,
+      </if>
       <if test="name != null">
         `name`,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cid != null">
+        #{cid,jdbcType=INTEGER},
+      </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.sarige.tmall.util.example.CategoryExample" resultType="java.lang.Long">
-    select count(*) from category
+  <select id="countByExample" parameterType="com.sarige.tmall.util.example.PropertyExample" resultType="java.lang.Long">
+    select count(*) from property
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update category
+    update property
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.cid != null">
+        cid = #{record.cid,jdbcType=INTEGER},
       </if>
       <if test="record.name != null">
         `name` = #{record.name,jdbcType=VARCHAR},
@@ -142,25 +152,30 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update category
+    update property
     set id = #{record.id,jdbcType=INTEGER},
+      cid = #{record.cid,jdbcType=INTEGER},
       `name` = #{record.name,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.sarige.tmall.pojo.Category">
-    update category
+  <update id="updateByPrimaryKeySelective" parameterType="com.sarige.tmall.pojo.Property">
+    update property
     <set>
+      <if test="cid != null">
+        cid = #{cid,jdbcType=INTEGER},
+      </if>
       <if test="name != null">
         `name` = #{name,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.sarige.tmall.pojo.Category">
-    update category
-    set `name` = #{name,jdbcType=VARCHAR}
+  <update id="updateByPrimaryKey" parameterType="com.sarige.tmall.pojo.Property">
+    update property
+    set cid = #{cid,jdbcType=INTEGER},
+      `name` = #{name,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

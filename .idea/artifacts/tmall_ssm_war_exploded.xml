@@ -6,7 +6,6 @@
         <exploded>true</exploded>
         <module>tmall_ssm</module>
         <packaging>war</packaging>
-        <unpackNestedArchives>false</unpackNestedArchives>
       </options>
     </properties>
     <root id="root">
@@ -46,6 +45,7 @@
           <element id="library" level="project" name="Maven: commons-lang:commons-lang:20030203.000129" />
           <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />
           <element id="library" level="project" name="Maven: org.mybatis.generator:mybatis-generator-core:1.4.0" />
+          <element id="library" level="project" name="Maven: org.jetbrains:annotations:22.0.0" />
         </element>
       </element>
       <element id="directory" name="META-INF">

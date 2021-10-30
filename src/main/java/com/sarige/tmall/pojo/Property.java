@@ -3,13 +3,18 @@ package com.sarige.tmall.pojo;
 import java.io.Serializable;
 
 /**
- * category
- * @author 
+ * property
+ *
+ * @author
  */
-public class Category implements Serializable {
+public class Property implements Serializable {
     private Integer id;
 
+    private Integer cid;
+
     private String name;
+
+    private Category category;
 
     private static final long serialVersionUID = 1L;
 
@@ -21,12 +26,28 @@ public class Category implements Serializable {
         this.id = id;
     }
 
+    public Integer getCid() {
+        return cid;
+    }
+
+    public void setCid(Integer cid) {
+        this.cid = cid;
+    }
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     @Override
@@ -40,9 +61,10 @@ public class Category implements Serializable {
         if (getClass() != that.getClass()) {
             return false;
         }
-        Category other = (Category) that;
+        Property other = (Property) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()));
+                && (this.getCid() == null ? other.getCid() == null : this.getCid().equals(other.getCid()))
+                && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()));
     }
 
     @Override
@@ -50,6 +72,7 @@ public class Category implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
+        result = prime * result + ((getCid() == null) ? 0 : getCid().hashCode());
         result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
         return result;
     }
@@ -61,6 +84,7 @@ public class Category implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
+        sb.append(", cid=").append(cid);
         sb.append(", name=").append(name);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");

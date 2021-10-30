@@ -8,6 +8,7 @@ import com.sarige.tmall.util.ImageUtil;
 import com.sarige.tmall.util.Page;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,14 +26,13 @@ public class CategoryController {
 
     @Resource
     CategoryService categoryService;
-
     Logger logger = Logger.getLogger(this.getClass());
 
     @RequestMapping("admin_category_list")
     public String list(Model model, Page page) {
         PageHelper.offsetPage(page.getStart(), page.getCount());
         List<Category> categoryList = categoryService.list();
-        int total = (int)new PageInfo<>(categoryList).getTotal();
+        int total = (int) new PageInfo<>(categoryList).getTotal();
         page.setTotal(total);
         model.addAttribute("categoryList", categoryList);
         model.addAttribute("page", page);
@@ -75,12 +75,14 @@ public class CategoryController {
     @RequestMapping("admin_category_update")
     public String update(Category category, HttpSession session, MultipartFile image) throws IOException {
         categoryService.update(category);
-        String imgPath = session.getServletContext().getRealPath("img/category/") + category.getId() + ".jpg";
-        File imgFile = new File(imgPath);
-        image.transferTo(imgFile);
-        BufferedImage bufferedImage = ImageUtil.change2jpg(imgFile);
-        assert bufferedImage != null;
-        ImageIO.write(bufferedImage, "jpg", imgFile);
+        if (!image.isEmpty()) {
+            String imgPath = session.getServletContext().getRealPath("img/category/") + category.getId() + ".jpg";
+            File imgFile = new File(imgPath);
+            image.transferTo(imgFile);
+            BufferedImage bufferedImage = ImageUtil.change2jpg(imgFile);
+            assert bufferedImage != null;
+            ImageIO.write(bufferedImage, "jpg", imgFile);
+        }
         return "admin/editCategory";
     }
 

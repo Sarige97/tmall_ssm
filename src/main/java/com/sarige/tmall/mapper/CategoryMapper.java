@@ -1,19 +1,30 @@
 package com.sarige.tmall.mapper;
 
 import com.sarige.tmall.pojo.Category;
-import com.sarige.tmall.util.Page;
-
+import com.sarige.tmall.util.example.CategoryExample;
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface CategoryMapper {
+    long countByExample(CategoryExample example);
 
-    List<Category> list();
+    int deleteByExample(CategoryExample example);
 
-    void add(Category category);
+    int deleteByPrimaryKey(Integer id);
 
-    void delete(int id);
+    int insert(Category record);
 
-    Category get(int id);
+    int insertSelective(Category record);
 
-    void update(Category category);
+    List<Category> selectByExample(CategoryExample example);
+
+    Category selectByPrimaryKey(Integer id);
+
+    int updateByExampleSelective(@Param("record") Category record, @Param("example") CategoryExample example);
+
+    int updateByExample(@Param("record") Category record, @Param("example") CategoryExample example);
+
+    int updateByPrimaryKeySelective(Category record);
+
+    int updateByPrimaryKey(Category record);
 }
