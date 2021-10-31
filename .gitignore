@@ -1,1 +1,3 @@
 /target/
+/src/main/resources/FtpConfig.properties
+/src/main/resources/jdbc.properties
