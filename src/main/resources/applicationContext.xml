@@ -54,4 +54,13 @@
         <property name="basePackage" value="com.sarige.tmall.mapper"/>
     </bean>
 
+    <context:property-placeholder location="FtpConfig.properties"/>
+
+    <bean class="com.sarige.tmall.util.FtpMessage">
+        <property name="FTP_URL" value="${FTP.URL}"/>
+        <property name="FTP_PORT" value="${FTP.PORT}"/>
+        <property name="FTP_USERNAME" value="${FTP.USERNAME}"/>
+        <property name="FTP_PASSWORD" value="${FTP.PASSWORD}"/>
+    </bean>
+
 </beans>
