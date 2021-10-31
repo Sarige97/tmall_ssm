@@ -20,6 +20,7 @@ import javax.imageio.ImageIO;
 import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -60,7 +61,7 @@ public class ProductImageController {
         } catch (Exception e) {
             logger.error("上传文件发生错误", e);
         }
-        return "redirect:" + new UrlBuilder("admin_productImage_list").addParam("pid", productimage.getPid());
+        return "redirect:" + new UrlBuilder("admin_productImage_list").addParam("productId", productimage.getPid());
     }
 
     @RequestMapping("admin_productImage_delete")
@@ -86,12 +87,11 @@ public class ProductImageController {
             imageFile.delete();
         }
         productImageService.delete(productImageId);
-        return "redirect:" + new UrlBuilder("admin_productImage_list").addParam("productImageId", productImageId);
+        return "redirect:" + new UrlBuilder("admin_productImage_list").addParam("productId", productimage.getPid());
     }
 
     @RequestMapping("admin_productImage_list")
     public String list(int productId, Model model) {
-        System.out.println(productId);
         Product product = productService.get(productId);
         List<Productimage> productImagesSingleList = productImageService.list(productId, ProductImageService.type_single);
         List<Productimage> productImagesDetailList = productImageService.list(productId, ProductImageService.type_detail);

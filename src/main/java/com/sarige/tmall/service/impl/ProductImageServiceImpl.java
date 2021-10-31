@@ -40,6 +40,6 @@ public class ProductImageServiceImpl implements ProductImageService {
         ProductimageExample productimageExample = new ProductimageExample();
         productimageExample.or().andPidEqualTo(productID).andTypeEqualTo(type);
         productimageExample.setOrderByClause("id desc");
-        return productimageMapper.selectByExample(new ProductimageExample());
+        return productimageMapper.selectByExample(productimageExample);
     }
 }

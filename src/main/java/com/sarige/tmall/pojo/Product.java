@@ -27,6 +27,8 @@ public class Product implements Serializable {
 
     private Category category;
 
+    private Productimage firstImage;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {
@@ -99,6 +101,14 @@ public class Product implements Serializable {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public Productimage getFirstImage() {
+        return firstImage;
+    }
+
+    public void setFirstImage(Productimage firstImage) {
+        this.firstImage = firstImage;
     }
 
     @Override

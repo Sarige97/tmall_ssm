@@ -4,7 +4,8 @@ import java.io.Serializable;
 
 /**
  * orderitem
- * @author 
+ *
+ * @author
  */
 public class Orderitem implements Serializable {
     private Integer id;
@@ -16,6 +17,8 @@ public class Orderitem implements Serializable {
     private Integer uid;
 
     private Integer number;
+
+    private Product product;
 
     private static final long serialVersionUID = 1L;
 
@@ -59,6 +62,14 @@ public class Orderitem implements Serializable {
         this.number = number;
     }
 
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -72,10 +83,10 @@ public class Orderitem implements Serializable {
         }
         Orderitem other = (Orderitem) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getPid() == null ? other.getPid() == null : this.getPid().equals(other.getPid()))
-            && (this.getOid() == null ? other.getOid() == null : this.getOid().equals(other.getOid()))
-            && (this.getUid() == null ? other.getUid() == null : this.getUid().equals(other.getUid()))
-            && (this.getNumber() == null ? other.getNumber() == null : this.getNumber().equals(other.getNumber()));
+                && (this.getPid() == null ? other.getPid() == null : this.getPid().equals(other.getPid()))
+                && (this.getOid() == null ? other.getOid() == null : this.getOid().equals(other.getOid()))
+                && (this.getUid() == null ? other.getUid() == null : this.getUid().equals(other.getUid()))
+                && (this.getNumber() == null ? other.getNumber() == null : this.getNumber().equals(other.getNumber()));
     }
 
     @Override
@@ -101,6 +112,7 @@ public class Orderitem implements Serializable {
         sb.append(", oid=").append(oid);
         sb.append(", uid=").append(uid);
         sb.append(", number=").append(number);
+        sb.append(", product=").append(product);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

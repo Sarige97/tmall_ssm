@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" import="java.util.*"%>
+         pageEncoding="UTF-8" import="java.util.*" %>
 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@include file="../include/admin/adminHeader.jsp"%>
-<%@include file="../include/admin/adminNavigator.jsp"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@include file="../include/admin/adminHeader.jsp" %>
+<%@include file="../include/admin/adminNavigator.jsp" %>
 
 <script>
-    $(function() {
-        $("#addForm").submit(function() {
+    $(function () {
+        $("#addForm").submit(function () {
             if (!checkEmpty("name", "产品名称"))
                 return false;
 // 			if (!checkEmpty("subTitle", "小标题"))
@@ -56,11 +56,9 @@
                 <tr>
                     <td>${product.id}</td>
                     <td>
-
-                            <%--<c:if test="${!empty p.firstProductImage}">--%>
-                            <%--<img width="40px" src="img/productSingle/${p.firstProductImage.id}.jpg">--%>
-                            <%--</c:if>--%>
-
+                        <c:if test="${!empty product.firstImage}">
+                            <img width="40px" src="img/productSingle/${product.firstImage.id}.jpg">
+                        </c:if>
                     </td>
                     <td>${product.name}</td>
                     <td>${product.subtitle}</td>
@@ -69,7 +67,7 @@
                     <td>${product.stock}</td>
                     <td><a href="admin_productImage_list?productId=${product.id}"><span
                             class="glyphicon glyphicon-picture"></span></a></td>
-                    <td><a href="admin_propertyValue_edit?pid=${product.id}"><span
+                    <td><a href="admin_propertyValue_edit?productId=${product.id}"><span
                             class="glyphicon glyphicon-th-list"></span></a></td>
 
                     <td><a href="admin_product_edit?id=${product.id}"><span
@@ -85,7 +83,7 @@
     </div>
 
     <div class="pageDiv">
-        <%@include file="../include/admin/adminPage.jsp"%>
+        <%@include file="../include/admin/adminPage.jsp" %>
     </div>
 
     <div class="panel panel-warning addDiv">
@@ -110,12 +108,12 @@
                     </tr>
                     <tr>
                         <td>优惠价格</td>
-                        <td><input id="promotePrice"  value="19.98" name="promoteprice" type="text"
+                        <td><input id="promotePrice" value="19.98" name="promoteprice" type="text"
                                    class="form-control"></td>
                     </tr>
                     <tr>
                         <td>库存</td>
-                        <td><input id="stock"  value="99" name="stock" type="text"
+                        <td><input id="stock" value="99" name="stock" type="text"
                                    class="form-control"></td>
                     </tr>
                     <tr class="submitTR">
@@ -131,4 +129,4 @@
 
 </div>
 
-<%@include file="../include/admin/adminFooter.jsp"%>
+<%@include file="../include/admin/adminFooter.jsp" %>

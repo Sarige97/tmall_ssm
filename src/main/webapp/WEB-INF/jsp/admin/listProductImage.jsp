@@ -69,26 +69,23 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach items="${productImagesSingleList}" var="productImage">
+                        <c:forEach items="${productImagesSingleList}" var="productImageSingle">
                             <tr>
-                                <td>${pi.id}</td>
+                                <td>${productImageSingle.id}</td>
                                 <td>
-                                    <a title="点击查看原图" href="img/productSingle/${productImage.id}.jpg"><img height="50px" src="img/productSingle/${productImage.id}.jpg"></a>
+                                    <a title="点击查看原图" href="img/productSingle/${productImageSingle.id}.jpg"><img height="50px" src="img/productSingle/${productImageSingle.id}.jpg"></a>
                                 </td>
                                 <td><a deleteLink="true"
-                                       href="admin_productImage_delete?id=${productImage.id}"><span
+                                       href="admin_productImage_delete?productImageId=${productImageSingle.id}"><span
                                         class=" 	glyphicon glyphicon-trash"></span></a></td>
-
                             </tr>
                         </c:forEach>
                         </tbody>
                     </table>
-
                 </div>
             </td>
             <td class="addPictureTableTD">
                 <div>
-
                     <div class="panel panel-warning addPictureDiv">
                         <div class="panel-heading">新增产品<b class="text-primary"> 详情 </b>图片</div>
                         <div class="panel-body">
@@ -122,16 +119,15 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach items="${productImagesDetailList}" var="productImage">
+                        <c:forEach items="${productImagesDetailList}" var="productImageDetail">
                             <tr>
-                                <td>${pi.id}</td>
+                                <td>${productImageDetail.id}</td>
                                 <td>
-                                    <a title="点击查看原图" href="img/productDetail/${productImage.id}.jpg"><img height="50px" src="img/productDetail/${productImage.id}.jpg"></a>
+                                    <a title="点击查看原图" href="img/productDetail/${productImageDetail.id}.jpg"><img height="50px" src="img/productDetail/${productImageDetail.id}.jpg"></a>
                                 </td>
                                 <td><a deleteLink="true"
-                                       href="admin_productImage_delete?id=${productImage.id}"><span
+                                       href="admin_productImage_delete?productImageId=${productImageDetail.id}"><span
                                         class=" 	glyphicon glyphicon-trash"></span></a></td>
-
                             </tr>
                         </c:forEach>
                         </tbody>

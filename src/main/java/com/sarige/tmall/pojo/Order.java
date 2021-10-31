@@ -1,11 +1,15 @@
 package com.sarige.tmall.pojo;
 
+import com.sarige.tmall.service.OrderService;
+
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * order_
- * @author 
+ *
+ * @author
  */
 public class Order implements Serializable {
     private Integer id;
@@ -33,6 +37,14 @@ public class Order implements Serializable {
     private Integer uid;
 
     private String status;
+
+    private List<Orderitem> orderItems;
+
+    private User user;
+
+    private float total;//总金额
+
+    private int totalNumber;//订单总数
 
     private static final long serialVersionUID = 1L;
 
@@ -140,6 +152,65 @@ public class Order implements Serializable {
         this.status = status;
     }
 
+    public List<Orderitem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(List<Orderitem> orderItems) {
+        this.orderItems = orderItems;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public float getTotal() {
+        return total;
+    }
+
+    public void setTotal(float total) {
+        this.total = total;
+    }
+
+    public int getTotalNumber() {
+        return totalNumber;
+    }
+
+    public void setTotalNumber(int totalNumber) {
+        this.totalNumber = totalNumber;
+    }
+
+    public String getStatusDesc(){
+        String desc ="未知";
+        switch(status){
+            case OrderService.waitPay:
+                desc="待付款";
+                break;
+            case OrderService.waitDelivery:
+                desc="待发货";
+                break;
+            case OrderService.waitConfirm:
+                desc="待收货";
+                break;
+            case OrderService.waitReview:
+                desc="等评价";
+                break;
+            case OrderService.finish:
+                desc="完成";
+                break;
+            case OrderService.delete:
+                desc="刪除";
+                break;
+            default:
+                desc="未知";
+        }
+        return desc;
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -153,18 +224,18 @@ public class Order implements Serializable {
         }
         Order other = (Order) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getOrdercode() == null ? other.getOrdercode() == null : this.getOrdercode().equals(other.getOrdercode()))
-            && (this.getAddress() == null ? other.getAddress() == null : this.getAddress().equals(other.getAddress()))
-            && (this.getPost() == null ? other.getPost() == null : this.getPost().equals(other.getPost()))
-            && (this.getReceiver() == null ? other.getReceiver() == null : this.getReceiver().equals(other.getReceiver()))
-            && (this.getMobile() == null ? other.getMobile() == null : this.getMobile().equals(other.getMobile()))
-            && (this.getUsermessage() == null ? other.getUsermessage() == null : this.getUsermessage().equals(other.getUsermessage()))
-            && (this.getCreatedate() == null ? other.getCreatedate() == null : this.getCreatedate().equals(other.getCreatedate()))
-            && (this.getPaydate() == null ? other.getPaydate() == null : this.getPaydate().equals(other.getPaydate()))
-            && (this.getDeliverydate() == null ? other.getDeliverydate() == null : this.getDeliverydate().equals(other.getDeliverydate()))
-            && (this.getConfirmdate() == null ? other.getConfirmdate() == null : this.getConfirmdate().equals(other.getConfirmdate()))
-            && (this.getUid() == null ? other.getUid() == null : this.getUid().equals(other.getUid()))
-            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()));
+                && (this.getOrdercode() == null ? other.getOrdercode() == null : this.getOrdercode().equals(other.getOrdercode()))
+                && (this.getAddress() == null ? other.getAddress() == null : this.getAddress().equals(other.getAddress()))
+                && (this.getPost() == null ? other.getPost() == null : this.getPost().equals(other.getPost()))
+                && (this.getReceiver() == null ? other.getReceiver() == null : this.getReceiver().equals(other.getReceiver()))
+                && (this.getMobile() == null ? other.getMobile() == null : this.getMobile().equals(other.getMobile()))
+                && (this.getUsermessage() == null ? other.getUsermessage() == null : this.getUsermessage().equals(other.getUsermessage()))
+                && (this.getCreatedate() == null ? other.getCreatedate() == null : this.getCreatedate().equals(other.getCreatedate()))
+                && (this.getPaydate() == null ? other.getPaydate() == null : this.getPaydate().equals(other.getPaydate()))
+                && (this.getDeliverydate() == null ? other.getDeliverydate() == null : this.getDeliverydate().equals(other.getDeliverydate()))
+                && (this.getConfirmdate() == null ? other.getConfirmdate() == null : this.getConfirmdate().equals(other.getConfirmdate()))
+                && (this.getUid() == null ? other.getUid() == null : this.getUid().equals(other.getUid()))
+                && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()));
     }
 
     @Override

@@ -1,19 +1,23 @@
 package com.sarige.tmall.pojo;
 
 import java.io.Serializable;
+import java.util.Properties;
 
 /**
  * propertyvalue
- * @author 
+ *
+ * @author
  */
 public class Propertyvalue implements Serializable {
     private Integer id;
 
-    private Integer pid;
+    private Integer pid;//绑定product
 
-    private Integer ptid;
+    private Integer ptid;//绑定property
 
     private String value;
+
+    private Property property;
 
     private static final long serialVersionUID = 1L;
 
@@ -49,6 +53,14 @@ public class Propertyvalue implements Serializable {
         this.value = value;
     }
 
+    public Property getProperty() {
+        return property;
+    }
+
+    public void setProperty(Property property) {
+        this.property = property;
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -62,9 +74,9 @@ public class Propertyvalue implements Serializable {
         }
         Propertyvalue other = (Propertyvalue) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getPid() == null ? other.getPid() == null : this.getPid().equals(other.getPid()))
-            && (this.getPtid() == null ? other.getPtid() == null : this.getPtid().equals(other.getPtid()))
-            && (this.getValue() == null ? other.getValue() == null : this.getValue().equals(other.getValue()));
+                && (this.getPid() == null ? other.getPid() == null : this.getPid().equals(other.getPid()))
+                && (this.getPtid() == null ? other.getPtid() == null : this.getPtid().equals(other.getPtid()))
+                && (this.getValue() == null ? other.getValue() == null : this.getValue().equals(other.getValue()));
     }
 
     @Override
@@ -88,6 +100,7 @@ public class Propertyvalue implements Serializable {
         sb.append(", pid=").append(pid);
         sb.append(", ptid=").append(ptid);
         sb.append(", value=").append(value);
+        sb.append(", property=").append(property);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
