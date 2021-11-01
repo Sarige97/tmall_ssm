@@ -1,3 +1,4 @@
 /target/
-/src/main/resources/FtpConfig.properties
+/src/main/resources/ftpConfig.properties
 /src/main/resources/jdbc.properties
+/src/main/resources/generatorConfig.xml

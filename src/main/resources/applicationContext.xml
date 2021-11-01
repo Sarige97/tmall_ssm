@@ -12,7 +12,7 @@
     <!--开启包扫描-->
     <context:component-scan base-package="com.sarige.tmall.service"/>
     <!--引入数据库配置文件-->
-    <context:property-placeholder location="classpath:jdbc.properties"/>
+    <context:property-placeholder location="classpath:jdbc.properties,classpath:ftpConfig.properties"/>
 
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
         <!--配置数据库基本信息（驱动类名，url，用户名，密码）-->
@@ -54,13 +54,17 @@
         <property name="basePackage" value="com.sarige.tmall.mapper"/>
     </bean>
 
-    <context:property-placeholder location="FtpConfig.properties"/>
 
-    <bean class="com.sarige.tmall.util.FtpMessage">
+
+    <bean id="ftpMessage" class="com.sarige.tmall.util.FtpMessage">
         <property name="FTP_URL" value="${FTP.URL}"/>
         <property name="FTP_PORT" value="${FTP.PORT}"/>
         <property name="FTP_USERNAME" value="${FTP.USERNAME}"/>
         <property name="FTP_PASSWORD" value="${FTP.PASSWORD}"/>
+    </bean>
+
+    <bean class="com.sarige.tmall.util.FtpUtil" scope="prototype">
+        <constructor-arg name="ftpMessage" ref="ftpMessage"/>
     </bean>
 
 </beans>

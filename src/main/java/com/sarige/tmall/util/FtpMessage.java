@@ -3,7 +3,7 @@ package com.sarige.tmall.util;
 public class FtpMessage {
 
     private String FTP_URL;
-    private String FTP_PORT;
+    private int FTP_PORT;
     private String FTP_USERNAME;
     private String FTP_PASSWORD;
 
@@ -15,11 +15,11 @@ public class FtpMessage {
         this.FTP_URL = FTP_URL;
     }
 
-    public String getFTP_PORT() {
+    public int getFTP_PORT() {
         return FTP_PORT;
     }
 
-    public void setFTP_PORT(String FTP_PORT) {
+    public void setFTP_PORT(int FTP_PORT) {
         this.FTP_PORT = FTP_PORT;
     }
 
