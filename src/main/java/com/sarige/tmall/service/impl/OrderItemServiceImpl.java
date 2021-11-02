@@ -1,13 +1,13 @@
 package com.sarige.tmall.service.impl;
 
-import com.sarige.tmall.mapper.OrderitemMapper;
+import com.sarige.tmall.mapper.OrderItemMapper;
 import com.sarige.tmall.mapper.ProductMapper;
 import com.sarige.tmall.pojo.Order;
-import com.sarige.tmall.pojo.Orderitem;
+import com.sarige.tmall.pojo.OrderItem;
 import com.sarige.tmall.pojo.Product;
 import com.sarige.tmall.service.OrderItemService;
 import com.sarige.tmall.service.ProductService;
-import com.sarige.tmall.util.example.OrderitemExample;
+import com.sarige.tmall.util.example.OrderItemExample;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -17,12 +17,12 @@ import java.util.List;
 public class OrderItemServiceImpl implements OrderItemService {
 
     @Resource
-    OrderitemMapper orderItemMapper;
+    OrderItemMapper orderItemMapper;
     @Resource
     ProductMapper productMapper;
 
     @Override
-    public void add(Orderitem orderItem) {
+    public void add(OrderItem orderItem) {
         orderItemMapper.insert(orderItem);
     }
 
@@ -32,20 +32,20 @@ public class OrderItemServiceImpl implements OrderItemService {
     }
 
     @Override
-    public void update(Orderitem orderItem) {
+    public void update(OrderItem orderItem) {
         orderItemMapper.updateByPrimaryKeySelective(orderItem);
     }
 
     @Override
-    public Orderitem get(int orderItemId) {
-        Orderitem orderitem = orderItemMapper.selectByPrimaryKey(orderItemId);
-        setProduct(orderitem);
-        return orderitem;
+    public OrderItem get(int orderItemId) {
+        OrderItem orderItem = orderItemMapper.selectByPrimaryKey(orderItemId);
+        setProduct(orderItem);
+        return orderItem;
     }
 
     @Override
-    public List<Orderitem> list() {
-        OrderitemExample example = new OrderitemExample();
+    public List<OrderItem> list() {
+        OrderItemExample example = new OrderItemExample();
         example.setOrderByClause("id desc");
         return orderItemMapper.selectByExample(example);
     }
@@ -59,15 +59,15 @@ public class OrderItemServiceImpl implements OrderItemService {
 
     @Override
     public void fill(Order order) {
-        OrderitemExample orderitemExample = new OrderitemExample();
-        orderitemExample.or().andOidEqualTo(order.getId());
-        List<Orderitem> orderItemList = orderItemMapper.selectByExample(orderitemExample);
+        OrderItemExample orderitemExample = new OrderItemExample();
+        orderitemExample.or().andOrderIdEqualTo(order.getId());
+        List<OrderItem> orderItemList = orderItemMapper.selectByExample(orderitemExample);
         setProduct(orderItemList);
 
         float total = 0;
         int totalNumber = 0;
-        for (Orderitem orderItem : orderItemList) {
-            total += orderItem.getProduct().getPromoteprice();
+        for (OrderItem orderItem : orderItemList) {
+            total += orderItem.getProduct().getPromotePrice();
             totalNumber += orderItem.getNumber();
         }
         order.setTotal(total);
@@ -75,14 +75,14 @@ public class OrderItemServiceImpl implements OrderItemService {
         order.setOrderItems(orderItemList);
     }
 
-    public void setProduct(List<Orderitem> orderItemList) {
-        for (Orderitem orderitem : orderItemList) {
+    public void setProduct(List<OrderItem> orderItemList) {
+        for (OrderItem orderitem : orderItemList) {
             setProduct(orderitem);
         }
     }
 
-    public void setProduct(Orderitem orderitem) {
-        Product product = productMapper.selectByPrimaryKey(orderitem.getPid());
+    public void setProduct(OrderItem orderitem) {
+        Product product = productMapper.selectByPrimaryKey(orderitem.getProductId());
         orderitem.setProduct(product);
     }
 }

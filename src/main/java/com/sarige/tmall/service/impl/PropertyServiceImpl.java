@@ -38,7 +38,7 @@ public class PropertyServiceImpl implements PropertyService {
     @Override
     public List<Property> list(int cid) {
         PropertyExample propertyExample = new PropertyExample();
-        propertyExample.or().andCidEqualTo(cid);
+        propertyExample.or().andCategoryIdEqualTo(cid);
         propertyExample.setOrderByClause("id desc");
         return propertyMapper.selectByExample(propertyExample);
     }

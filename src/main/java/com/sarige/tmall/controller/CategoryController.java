@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.util.List;
 
 @Controller
+@Transactional
 public class CategoryController {
 
     @Resource

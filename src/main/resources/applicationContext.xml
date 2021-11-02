@@ -2,10 +2,13 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context.xsd">
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <!--开启注解配置-->
     <context:annotation-config/>
@@ -54,8 +57,7 @@
         <property name="basePackage" value="com.sarige.tmall.mapper"/>
     </bean>
 
-
-
+    <!--配置FTP服务器信息-->
     <bean id="ftpMessage" class="com.sarige.tmall.util.FtpMessage">
         <property name="FTP_URL" value="${FTP.URL}"/>
         <property name="FTP_PORT" value="${FTP.PORT}"/>
@@ -66,5 +68,7 @@
     <bean class="com.sarige.tmall.util.FtpUtil" scope="prototype">
         <constructor-arg name="ftpMessage" ref="ftpMessage"/>
     </bean>
+
+
 
 </beans>

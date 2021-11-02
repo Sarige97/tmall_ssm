@@ -1,9 +1,9 @@
 package com.sarige.tmall.service.impl;
 
-import com.sarige.tmall.mapper.ProductimageMapper;
-import com.sarige.tmall.pojo.Productimage;
+import com.sarige.tmall.mapper.ProductImageMapper;
+import com.sarige.tmall.pojo.ProductImage;
 import com.sarige.tmall.service.ProductImageService;
-import com.sarige.tmall.util.example.ProductimageExample;
+import com.sarige.tmall.util.example.ProductImageExample;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -13,10 +13,10 @@ import java.util.List;
 public class ProductImageServiceImpl implements ProductImageService {
 
     @Resource
-    ProductimageMapper productimageMapper;
+    ProductImageMapper productimageMapper;
 
     @Override
-    public void add(Productimage productimage) {
+    public void add(ProductImage productimage) {
         productimageMapper.insert(productimage);
     }
 
@@ -26,19 +26,19 @@ public class ProductImageServiceImpl implements ProductImageService {
     }
 
     @Override
-    public void update(Productimage productimage) {
+    public void update(ProductImage productimage) {
         productimageMapper.updateByPrimaryKey(productimage);
     }
 
     @Override
-    public Productimage get(int id) {
+    public ProductImage get(int id) {
         return productimageMapper.selectByPrimaryKey(id);
     }
 
     @Override
-    public List<Productimage> list(int productID, String type) {
-        ProductimageExample productimageExample = new ProductimageExample();
-        productimageExample.or().andPidEqualTo(productID).andTypeEqualTo(type);
+    public List<ProductImage> list(int productID, String type) {
+        ProductImageExample productimageExample = new ProductImageExample();
+        productimageExample.or().andProductIdEqualTo(productID).andTypeEqualTo(type);
         productimageExample.setOrderByClause("id desc");
         return productimageMapper.selectByExample(productimageExample);
     }

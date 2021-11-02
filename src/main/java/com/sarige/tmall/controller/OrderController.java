@@ -7,6 +7,7 @@ import com.sarige.tmall.service.OrderItemService;
 import com.sarige.tmall.service.OrderService;
 import com.sarige.tmall.util.Page;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -16,6 +17,7 @@ import java.util.Date;
 import java.util.List;
 
 @Controller
+@Transactional
 public class OrderController {
     @Resource
     OrderService orderService;
@@ -42,7 +44,7 @@ public class OrderController {
 
     @RequestMapping("admin_order_delivery")
     public String delivery(Order order) throws IOException {
-        order.setDeliverydate(new Date());
+        order.setDeliveryDate(new Date());
         order.setStatus(OrderService.waitConfirm);
         orderService.update(order);
         return "redirect:admin_order_list";

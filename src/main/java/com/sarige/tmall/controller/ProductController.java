@@ -9,6 +9,7 @@ import com.sarige.tmall.service.ProductService;
 import com.sarige.tmall.util.Page;
 import com.sarige.tmall.util.UrlBuilder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -17,6 +18,7 @@ import java.util.Date;
 import java.util.List;
 
 @Controller
+@Transactional
 public class ProductController {
 
     @Resource
@@ -25,23 +27,26 @@ public class ProductController {
     ProductService productService;
 
     @RequestMapping("admin_product_add")
-    public String add(Model model, Product product) {
-        product.setCreatedate(new Date());
+    public String add(Product product) {
+        System.out.println(product);
+        product.setCreateDate(new Date());
         productService.add(product);
-        return "redirect:" + new UrlBuilder("admin_product_list").addParam("cid", product.getCid());
+        System.out.println(1 / 0);
+        productService.add(product);
+        return "redirect:" + new UrlBuilder("admin_product_list").addParam("cid", product.getCategoryId());
     }
 
     @RequestMapping("admin_product_delete")
     public String delete(int id) {
         Product product = productService.get(id);
         productService.delete(id);
-        return "redirect:" + new UrlBuilder("admin_product_list").addParam("cid", product.getCid());
+        return "redirect:" + new UrlBuilder("admin_product_list").addParam("cid", product.getCategoryId());
     }
 
     @RequestMapping("admin_product_edit")
     public String edit(Model model, int id) {
         Product product = productService.get(id);
-        product.setCategory(categoryService.get(product.getCid()));
+        product.setCategory(categoryService.get(product.getCategoryId()));
         model.addAttribute("product", product);
         return "admin/editProduct";
     }
@@ -49,7 +54,7 @@ public class ProductController {
     @RequestMapping("admin_product_update")
     public String update(Product product) {
         productService.update(product);
-        return "redirect:" + new UrlBuilder("admin_product_list").addParam("cid", product.getCid());
+        return "redirect:" + new UrlBuilder("admin_product_list").addParam("cid", product.getCategoryId());
     }
 
     @RequestMapping("admin_product_list")

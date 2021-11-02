@@ -49,7 +49,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     public void setUser(Order order) {
-        Integer userId = order.getUid();
+        Integer userId = order.getUserid();
         User user = userMapper.selectByPrimaryKey(userId);
         order.setUser(user);
     }

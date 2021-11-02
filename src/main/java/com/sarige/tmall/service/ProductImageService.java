@@ -1,8 +1,7 @@
 package com.sarige.tmall.service;
 
-import com.sarige.tmall.pojo.Productimage;
+import com.sarige.tmall.pojo.ProductImage;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public interface ProductImageService {
@@ -10,14 +9,14 @@ public interface ProductImageService {
     String type_single = "type_single";
     String type_detail = "type_detail";
 
-    void add(Productimage productimage);
+    void add(ProductImage productimage);
 
     void delete(int id);
 
-    void update(Productimage productimage);
+    void update(ProductImage productimage);
 
-    Productimage get(int id);
+    ProductImage get(int id);
 
-    List<Productimage> list(int productID, String type);
+    List<ProductImage> list(int productID, String type);
 
 }

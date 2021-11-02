@@ -1,16 +1,16 @@
 package com.sarige.tmall.service;
 
 import com.sarige.tmall.pojo.Product;
-import com.sarige.tmall.pojo.Propertyvalue;
+import com.sarige.tmall.pojo.PropertyValue;
 
 import java.util.List;
 
 public interface PropertyValueService {
     void init(Product product);
 
-    void update(Propertyvalue propertyValue);
+    void update(PropertyValue propertyValue);
 
-    Propertyvalue get(int productId, int propertyId);
+    PropertyValue get(int productId, int propertyId);
 
-    List<Propertyvalue> list(int productId);
+    List<PropertyValue> list(int productId);
 }

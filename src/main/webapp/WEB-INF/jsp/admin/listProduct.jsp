@@ -61,9 +61,9 @@
                         </c:if>
                     </td>
                     <td>${product.name}</td>
-                    <td>${product.subtitle}</td>
-                    <td>${product.originalprice}</td>
-                    <td>${product.promoteprice}</td>
+                    <td>${product.subTitle}</td>
+                    <td>${product.originalPrice}</td>
+                    <td>${product.promotePrice}</td>
                     <td>${product.stock}</td>
                     <td><a href="admin_productImage_list?productId=${product.id}"><span
                             class="glyphicon glyphicon-picture"></span></a></td>
@@ -98,17 +98,17 @@
                     </tr>
                     <tr>
                         <td>产品小标题</td>
-                        <td><input id="subTitle" name="subtitle" type="text"
+                        <td><input id="subTitle" name="subTitle" type="text"
                                    class="form-control"></td>
                     </tr>
                     <tr>
                         <td>原价格</td>
-                        <td><input id="originalPrice" value="99.98" name="originalprice" type="text"
+                        <td><input id="originalPrice" value="99.98" name="originalPrice" type="text"
                                    class="form-control"></td>
                     </tr>
                     <tr>
                         <td>优惠价格</td>
-                        <td><input id="promotePrice" value="19.98" name="promoteprice" type="text"
+                        <td><input id="promotePrice" value="19.98" name="promotePrice" type="text"
                                    class="form-control"></td>
                     </tr>
                     <tr>
@@ -118,7 +118,7 @@
                     </tr>
                     <tr class="submitTR">
                         <td colspan="2" align="center">
-                            <input type="hidden" name="cid" value="${category.id}">
+                            <input type="hidden" name="categoryId" value="${category.id}">
                             <button type="submit" class="btn btn-success">提 交</button>
                         </td>
                     </tr>

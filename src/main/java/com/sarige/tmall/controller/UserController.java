@@ -6,6 +6,7 @@ import com.sarige.tmall.pojo.User;
 import com.sarige.tmall.service.UserService;
 import com.sarige.tmall.util.Page;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -13,6 +14,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Controller
+@Transactional
 public class UserController {
 
     @Resource

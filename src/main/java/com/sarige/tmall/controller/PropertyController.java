@@ -17,6 +17,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Controller
+@Transactional
 public class PropertyController {
 
     @Resource
@@ -29,12 +30,12 @@ public class PropertyController {
     public String add(Property property) {
         System.out.println(property);
         propertyService.add(property);
-        return "redirect:" + new UrlBuilder("admin_property_list").addParam("cid", property.getCid());
+        return "redirect:" + new UrlBuilder("admin_property_list").addParam("cid", property.getCategoryId());
     }
 
     @RequestMapping("admin_property_delete")
     public String delete(int id) {
-        Integer cid = propertyService.get(id).getCid();
+        Integer cid = propertyService.get(id).getCategoryId();
         propertyService.delete(id);
         return "redirect:" + new UrlBuilder("admin_property_list").addParam("cid", cid);
     }
@@ -42,7 +43,7 @@ public class PropertyController {
     @RequestMapping("admin_property_edit")
     public String edit(Model model, int id) {
         Property property = propertyService.get(id);
-        Category category = categoryService.get(property.getCid());
+        Category category = categoryService.get(property.getCategoryId());
         property.setCategory(category);
         model.addAttribute("property", property);
         return "admin/editProperty";
@@ -51,7 +52,7 @@ public class PropertyController {
     @RequestMapping("admin_property_update")
     public String update(Property property) {
         propertyService.update(property);
-        return "redirect:" + new UrlBuilder("admin_property_list").addParam("cid", property.getCid());
+        return "redirect:" + new UrlBuilder("admin_property_list").addParam("cid", property.getCategoryId());
     }
 
     @RequestMapping("admin_property_list")
