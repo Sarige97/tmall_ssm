@@ -47,10 +47,10 @@
                     <td align="center">${order.totalNumber}</td>
                     <td align="center">${order.user.name}</td>
 
-                    <td><fmt:formatDate value="${order.createdate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-                    <td><fmt:formatDate value="${order.paydate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-                    <td><fmt:formatDate value="${order.deliverydate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-                    <td><fmt:formatDate value="${order.confirmdate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                    <td><fmt:formatDate value="${order.createDate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                    <td><fmt:formatDate value="${order.payDate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                    <td><fmt:formatDate value="${order.deliveryDate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                    <td><fmt:formatDate value="${order.confirmDate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 
                     <td>
                         <button oid="${order.id}" class="orderPageCheckOrderItems btn btn-primary btn-xs">查看详情</button>
@@ -87,7 +87,7 @@
                                         </td>
                                         <td align="right">
 
-                                            <span class="text-muted">单价：￥${oi.product.promoteprice}</span>
+                                            <span class="text-muted">单价：￥${oi.product.promotePrice}</span>
                                         </td>
 
                                     </tr>

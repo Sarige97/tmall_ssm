@@ -45,17 +45,17 @@
                     <tr>
                         <td>产品小标题</td>
                         <td><input id="subtitle" name="subtitle" type="text"
-                                   value="${product.subtitle}"
+                                   value="${product.subTitle}"
                                    class="form-control"></td>
                     </tr>
                     <tr>
                         <td>原价格</td>
-                        <td><input id="originalPrice" value="${product.originalprice}" name="originalprice" type="text"
+                        <td><input id="originalPrice" value="${product.originalPrice}" name="originalprice" type="text"
                                    class="form-control"></td>
                     </tr>
                     <tr>
                         <td>优惠价格</td>
-                        <td><input id="promotePrice"  value="${product.promoteprice}" name="promoteprice" type="text"
+                        <td><input id="promotePrice"  value="${product.promotePrice}" name="promoteprice" type="text"
                                    class="form-control"></td>
                     </tr>
                     <tr>
