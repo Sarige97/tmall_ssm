@@ -48,6 +48,8 @@
           <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />
           <element id="library" level="project" name="Maven: org.mybatis.generator:mybatis-generator-core:1.4.0" />
           <element id="library" level="project" name="Maven: org.jetbrains:annotations:22.0.0" />
+          <element id="library" level="project" name="Maven: cn.hutool:hutool-json:5.7.15" />
+          <element id="library" level="project" name="Maven: cn.hutool:hutool-core:5.7.15" />
         </element>
       </element>
       <element id="directory" name="META-INF">

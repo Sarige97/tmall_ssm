@@ -177,4 +177,16 @@ public class OrderItem {
     public void setProduct(Product product) {
         this.product = product;
     }
+
+    @Override
+    public String toString() {
+        return "OrderItem{" +
+                "id=" + id +
+                ", productId=" + productId +
+                ", orderId=" + orderId +
+                ", userId=" + userId +
+                ", number=" + number +
+                ", product=" + product +
+                '}';
+    }
 }

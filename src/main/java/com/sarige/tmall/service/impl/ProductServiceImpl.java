@@ -1,5 +1,6 @@
 package com.sarige.tmall.service.impl;
 
+import com.sarige.tmall.controller.ProductController;
 import com.sarige.tmall.mapper.CategoryMapper;
 import com.sarige.tmall.mapper.ProductImageMapper;
 import com.sarige.tmall.mapper.ProductMapper;
@@ -12,6 +13,7 @@ import com.sarige.tmall.util.example.ProductImageExample;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -54,6 +56,35 @@ public class ProductServiceImpl implements ProductService {
         List<Product> productList = productMapper.selectByExample(productExample);
         setProductImage(productList);
         return productList;
+    }
+
+    @Override
+    public void fill(List<Category> categoryList) {
+        for (Category category : categoryList) {
+            fill(category);
+        }
+    }
+
+    @Override
+    public void fill(Category category) {
+        List<Product> productList = list(category.getId());
+        category.setProductList(productList);
+    }
+
+    @Override
+    public void fillByRow(List<Category> categoryList) {
+        int productNumberEachRow = 8;
+        for (Category category : categoryList) {
+            List<Product> products =  category.getProductList();
+            List<List<Product>> productsByRow =  new ArrayList<>();
+            for (int i = 0; i < products.size(); i+=productNumberEachRow) {
+                int size = i+productNumberEachRow;
+                size= Math.min(size, products.size());
+                List<Product> productsOfEachRow =products.subList(i, size);
+                productsByRow.add(productsOfEachRow);
+            }
+            category.setProductListByRow(productsByRow);
+        }
     }
 
     public void setProductImage(Product product) {

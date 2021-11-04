@@ -52,7 +52,7 @@
                                     <tr class="submitTR">
                                         <td align="center">
                                             <input type="hidden" name="type" value="type_single" />
-                                            <input type="hidden" name="pid" value="${product.id}" />
+                                            <input type="hidden" name="productId" value="${product.id}" />
                                             <button type="submit" class="btn btn-success">提 交</button>
                                         </td>
                                     </tr>
@@ -102,7 +102,7 @@
                                     <tr class="submitTR">
                                         <td align="center">
                                             <input type="hidden" name="type" value="type_detail" />
-                                            <input type="hidden" name="pid" value="${product.id}" />
+                                            <input type="hidden" name="productId" value="${product.id}" />
                                             <button type="submit" class="btn btn-success">提 交</button>
                                         </td>
                                     </tr>

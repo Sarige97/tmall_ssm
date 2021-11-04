@@ -58,7 +58,7 @@ public class PropertyValueServiceImpl implements PropertyValueService {
         propertyValueExample.or().andProductIdEqualTo(productId);
         List<PropertyValue> propertyValueList = propertyValueMapper.selectByExample(propertyValueExample);
         for (PropertyValue propertyValue : propertyValueList) {
-            Integer propertyId = propertyValue.getProductId();
+            Integer propertyId = propertyValue.getPropertyId();
             Property property = propertyService.get(propertyId);
             propertyValue.setProperty(property);
         }

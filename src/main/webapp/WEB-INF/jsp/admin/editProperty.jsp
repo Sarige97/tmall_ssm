@@ -29,7 +29,7 @@
                     <tr class="submitTR">
                         <td colspan="2" align="center">
                             <input type="hidden" name="id" value="${property.id}">
-                            <input type="hidden" name="cid" value="${property.category.id}">
+                            <input type="hidden" name="categoryId" value="${property.category.id}">
                             <button type="submit" class="btn btn-success">提 交</button></td>
                     </tr>
                 </table>

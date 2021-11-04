@@ -2,5 +2,4 @@
 /src/main/resources/ftpConfig.properties
 /src/main/resources/jdbc.properties
 /src/main/resources/generatorConfig.xml
-/src/main/webapp/img
-
+/src/main/webapp/img/

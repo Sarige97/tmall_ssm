@@ -1,5 +1,6 @@
 package com.sarige.tmall.controller;
 
+import cn.hutool.json.JSONUtil;
 import com.sarige.tmall.pojo.Category;
 import com.sarige.tmall.pojo.Product;
 import com.sarige.tmall.pojo.PropertyValue;
@@ -35,6 +36,7 @@ public class PropertyValueController {
         List<PropertyValue> propertyValueList = propertyValueService.list(productId);
         model.addAttribute("product", product);
         model.addAttribute("propertyValueList", propertyValueList);
+        System.out.println(propertyValueList.get(0).getProperty());
         return "admin/editPropertyValue";
     }
 

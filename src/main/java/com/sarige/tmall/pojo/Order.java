@@ -462,4 +462,27 @@ public class Order {
         }
         return desc;
     }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", orderCode='" + orderCode + '\'' +
+                ", address='" + address + '\'' +
+                ", post='" + post + '\'' +
+                ", receiver='" + receiver + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", userMessage='" + userMessage + '\'' +
+                ", createDate=" + createDate +
+                ", payDate=" + payDate +
+                ", deliveryDate=" + deliveryDate +
+                ", confirmDate=" + confirmDate +
+                ", userid=" + userid +
+                ", status='" + status + '\'' +
+                ", orderItems=" + orderItems +
+                ", user=" + user +
+                ", total=" + total +
+                ", totalNumber=" + totalNumber +
+                '}';
+    }
 }

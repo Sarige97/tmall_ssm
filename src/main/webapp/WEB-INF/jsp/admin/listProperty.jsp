@@ -7,11 +7,8 @@
 
 <script>
     $(function() {
-
         $("#addForm").submit(function() {
-            if (checkEmpty("name", "属性名称"))
-                return true;
-            return false;
+            return checkEmpty("name", "属性名称");
         });
     });
 </script>
@@ -71,7 +68,7 @@
                     </tr>
                     <tr class="submitTR">
                         <td colspan="2" align="center">
-                            <input type="hidden" name="cid" value="${category.id}">
+                            <input type="hidden" name="categoryId" value="${category.id}">
                             <button type="submit" class="btn btn-success">提 交</button>
                         </td>
                     </tr>

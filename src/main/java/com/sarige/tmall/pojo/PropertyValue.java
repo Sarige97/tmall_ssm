@@ -140,4 +140,16 @@ public class PropertyValue {
     public void setProperty(Property property) {
         this.property = property;
     }
+
+    @Override
+    public String toString() {
+        return "PropertyValue{" +
+                "id=" + id +
+                ", productId=" + productId +
+                ", propertyId=" + propertyId +
+                ", value='" + value + '\'' +
+                ", product=" + product +
+                ", property=" + property +
+                '}';
+    }
 }

@@ -6,6 +6,7 @@ import org.mybatis.generator.config.xml.ConfigurationParser;
 import org.mybatis.generator.internal.DefaultShellCallback;
 
 import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,9 @@ public class MybatisGenerator {
     public static void main(String[] args) throws Exception {
         List<String> warnings = new ArrayList<>();
         boolean overwrite = true;
-        InputStream is = MybatisGenerator.class.getClassLoader().getResource("generatorConfig.xml").openStream();
+        URL resource = MybatisGenerator.class.getClassLoader().getResource("generatorConfig.xml");
+        assert resource != null;
+        InputStream is = resource.openStream();
         ConfigurationParser cp = new ConfigurationParser(warnings);
         Configuration config = cp.parseConfiguration(is);
         is.close();
@@ -23,4 +26,5 @@ public class MybatisGenerator {
         System.out.println("生成代码成功，刷新项目，查看文件,然后执行TestMybatis.java");
     }
 }
+
 

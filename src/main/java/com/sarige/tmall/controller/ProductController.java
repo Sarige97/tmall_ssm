@@ -28,10 +28,7 @@ public class ProductController {
 
     @RequestMapping("admin_product_add")
     public String add(Product product) {
-        System.out.println(product);
         product.setCreateDate(new Date());
-        productService.add(product);
-        System.out.println(1 / 0);
         productService.add(product);
         return "redirect:" + new UrlBuilder("admin_product_list").addParam("cid", product.getCategoryId());
     }

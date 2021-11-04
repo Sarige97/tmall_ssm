@@ -28,6 +28,7 @@
         <commons-net.version>20030805.205232</commons-net.version>
         <aopalliance.version>1.0</aopalliance.version>
         <mybatis-generator.version>1.4.0</mybatis-generator.version>
+        <hutool.version>5.7.15</hutool.version>
     </properties>
 
     <dependencies>
@@ -176,6 +177,12 @@
             <artifactId>annotations</artifactId>
             <version>22.0.0</version>
             <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-json</artifactId>
+            <version>${hutool.version}</version>
         </dependency>
 
     </dependencies>
