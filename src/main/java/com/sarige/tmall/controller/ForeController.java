@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.util.HtmlUtils;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -30,14 +31,14 @@ public class ForeController {
     private final Logger logger = Logger.getLogger(this.getClass());
 
     @RequestMapping("forehome")
-    public String home(Model model) {
+    public String home(Model model, HttpSession session) {
         List<Category> categoryList = categoryService.list();
         productService.fill(categoryList);
         productService.fillByRow(categoryList);
+        User user = (User) session.getAttribute("user");
         model.addAttribute("categoryList", categoryList);
-        logger.info(JSONUtil.parseArray(categoryList));
+        model.addAttribute("user", user);
         return "fore/home";
-//        return "include/fore/home/categoryMenu";
     }
 
     @RequestMapping("foreregister")
@@ -57,4 +58,30 @@ public class ForeController {
 
         return "redirect:registerSuccessPage";
     }
+
+    @RequestMapping("forelogin")
+    public String login(String name, String password, Model model, HttpSession session) {
+        logger.debug("name=" + name);
+        logger.debug("password=" + password);
+        User user = userService.get(name, password);
+        logger.debug("user=" + user);
+        if (null == user) {
+            model.addAttribute("msg", "账号密码错误");
+            logger.debug("登录失败");
+            return "fore/login";
+        }
+        logger.debug("登录成功");
+        session.setAttribute("user", user);
+        return "redirect:forehome";
+    }
+
+    @RequestMapping("forelogout")
+    public String logout(HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        logger.debug(user.getName() + "注销");
+        session.removeAttribute("user");
+        return "redirect:forehome";
+    }
 }
+
+

@@ -1,6 +1,5 @@
 package com.sarige.tmall.service.impl;
 
-import com.sarige.tmall.controller.ProductController;
 import com.sarige.tmall.mapper.CategoryMapper;
 import com.sarige.tmall.mapper.ProductImageMapper;
 import com.sarige.tmall.mapper.ProductMapper;
@@ -92,7 +91,7 @@ public class ProductServiceImpl implements ProductService {
         productimageExample.or().andProductIdEqualTo(product.getId());
         List<ProductImage> productImageList = productimageMapper.selectByExample(productimageExample);
         if (!productImageList.isEmpty()) {
-            product.setFirstImage(productImageList.get(0));
+            product.setFirstProductImage(productImageList.get(0));
         }
     }
 

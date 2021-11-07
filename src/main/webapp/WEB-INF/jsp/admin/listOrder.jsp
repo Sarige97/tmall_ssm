@@ -73,7 +73,7 @@
                                                 <%--
                                                 --%>
                                             <img width="40px" height="40px"
-                                            src="img/productSingle/${oi.product.firstImage.id}.jpg">
+                                            src="img/productSingle/${oi.product.firstProductImage.id}.jpg">
                                         </td>
 
                                         <td>

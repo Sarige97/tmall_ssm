@@ -3,3 +3,5 @@
 /src/main/resources/jdbc.properties
 /src/main/resources/generatorConfig.xml
 /src/main/webapp/img/
+/src/main/webapp/test/
+/src/main/java/com/sarige/tmall/controller/TestController.java
