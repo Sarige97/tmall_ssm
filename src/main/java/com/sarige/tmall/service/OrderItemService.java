@@ -21,4 +21,6 @@ public interface OrderItemService {
 
     void fill(Order order);
 
+    int getSaleCount(int productId);
+
 }

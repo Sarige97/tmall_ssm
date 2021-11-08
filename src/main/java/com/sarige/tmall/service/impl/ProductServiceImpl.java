@@ -6,7 +6,9 @@ import com.sarige.tmall.mapper.ProductMapper;
 import com.sarige.tmall.pojo.Category;
 import com.sarige.tmall.pojo.Product;
 import com.sarige.tmall.pojo.ProductImage;
+import com.sarige.tmall.service.OrderItemService;
 import com.sarige.tmall.service.ProductService;
+import com.sarige.tmall.service.ReviewService;
 import com.sarige.tmall.util.example.ProductExample;
 import com.sarige.tmall.util.example.ProductImageExample;
 import org.springframework.stereotype.Service;
@@ -24,6 +26,10 @@ public class ProductServiceImpl implements ProductService {
     ProductImageMapper productimageMapper;
     @Resource
     CategoryMapper categoryMapper;
+    @Resource
+    OrderItemService orderItemService;
+    @Resource
+    ReviewService reviewService;
 
     @Override
     public void add(Product product) {
@@ -74,15 +80,30 @@ public class ProductServiceImpl implements ProductService {
     public void fillByRow(List<Category> categoryList) {
         int productNumberEachRow = 8;
         for (Category category : categoryList) {
-            List<Product> products =  category.getProductList();
-            List<List<Product>> productsByRow =  new ArrayList<>();
-            for (int i = 0; i < products.size(); i+=productNumberEachRow) {
-                int size = i+productNumberEachRow;
-                size= Math.min(size, products.size());
-                List<Product> productsOfEachRow =products.subList(i, size);
+            List<Product> products = category.getProductList();
+            List<List<Product>> productsByRow = new ArrayList<>();
+            for (int i = 0; i < products.size(); i += productNumberEachRow) {
+                int size = i + productNumberEachRow;
+                size = Math.min(size, products.size());
+                List<Product> productsOfEachRow = products.subList(i, size);
                 productsByRow.add(productsOfEachRow);
             }
             category.setProductListByRow(productsByRow);
+        }
+    }
+
+    @Override
+    public void setSaleAndReviewNumber(Product product) {
+        int saleCount = orderItemService.getSaleCount(product.getId());
+        product.setSaleCount(saleCount);
+        int reviewCount = reviewService.getCount(product.getId());
+        product.setReviewCount(reviewCount);
+    }
+
+    @Override
+    public void setSaleAndReviewNumber(List<Product> productList) {
+        for (Product product : productList) {
+            setSaleAndReviewNumber(product);
         }
     }
 

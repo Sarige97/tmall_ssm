@@ -75,6 +75,18 @@ public class OrderItemServiceImpl implements OrderItemService {
         order.setOrderItems(orderItemList);
     }
 
+    @Override
+    public int getSaleCount(int productId) {
+        OrderItemExample orderItemExample = new OrderItemExample();
+        orderItemExample.or().andProductIdEqualTo(productId);
+        List<OrderItem> orderItemList = orderItemMapper.selectByExample(orderItemExample);
+        int result = 0;
+        for (OrderItem orderItem : orderItemList) {
+            result += orderItem.getNumber();
+        }
+        return result;
+    }
+
     public void setProduct(List<OrderItem> orderItemList) {
         for (OrderItem orderitem : orderItemList) {
             setProduct(orderitem);

@@ -1,11 +1,9 @@
 package com.sarige.tmall.controller;
 
+import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
-import com.sarige.tmall.pojo.Category;
-import com.sarige.tmall.pojo.User;
-import com.sarige.tmall.service.CategoryService;
-import com.sarige.tmall.service.ProductService;
-import com.sarige.tmall.service.UserService;
+import com.sarige.tmall.pojo.*;
+import com.sarige.tmall.service.*;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,8 +25,14 @@ public class ForeController {
     private ProductService productService;
     @Resource
     private UserService userService;
+    @Resource
+    private ProductImageService productImageService;
+    @Resource
+    private PropertyValueService propertyValueService;
+    @Resource
+    private ReviewService reviewService;
 
-    private final Logger logger = Logger.getLogger(this.getClass());
+    Logger logger = Logger.getLogger(this.getClass());
 
     @RequestMapping("forehome")
     public String home(Model model, HttpSession session) {
@@ -81,6 +85,25 @@ public class ForeController {
         logger.debug(user.getName() + "注销");
         session.removeAttribute("user");
         return "redirect:forehome";
+    }
+
+    @RequestMapping("foreproduct")
+    public String product(int pid, Model model) {
+        Product product = productService.get(pid);
+
+        List<ProductImage> productSingleImages = productImageService.list(product.getId(), ProductImageService.type_single);
+        List<ProductImage> productDetailImages = productImageService.list(product.getId(), ProductImageService.type_detail);
+        product.setProductSingleImageList(productSingleImages);
+        product.setProductDetailImages(productDetailImages);
+        product.setFirstProductImage(productSingleImages.get(0));
+        List<PropertyValue> propertyValueList = propertyValueService.list(product.getId());
+        List<Review> reviewList = reviewService.list(product.getId());
+        productService.setSaleAndReviewNumber(product);
+        model.addAttribute("reviewList", reviewList);
+        model.addAttribute("product", product);
+        model.addAttribute("propertyValueList", propertyValueList);
+        logger.debug(JSONUtil.parseObj(product));
+        return "fore/product";
     }
 }
 
