@@ -30,14 +30,14 @@ public class ProductController {
     public String add(Product product) {
         product.setCreateDate(new Date());
         productService.add(product);
-        return "redirect:" + new UrlBuilder("admin_product_list").addParam("cid", product.getCategoryId());
+        return "redirect:" + new UrlBuilder("admin_product_list").addParam("categoryId", product.getCategoryId());
     }
 
     @RequestMapping("admin_product_delete")
     public String delete(int id) {
         Product product = productService.get(id);
         productService.delete(id);
-        return "redirect:" + new UrlBuilder("admin_product_list").addParam("cid", product.getCategoryId());
+        return "redirect:" + new UrlBuilder("admin_product_list").addParam("categoryId", product.getCategoryId());
     }
 
     @RequestMapping("admin_product_edit")
@@ -51,13 +51,13 @@ public class ProductController {
     @RequestMapping("admin_product_update")
     public String update(Product product) {
         productService.update(product);
-        return "redirect:" + new UrlBuilder("admin_product_list").addParam("cid", product.getCategoryId());
+        return "redirect:" + new UrlBuilder("admin_product_list").addParam("categoryId", product.getCategoryId());
     }
 
     @RequestMapping("admin_product_list")
-    public String list(int cid, Model model, Page page) {
-        Category category = categoryService.get(cid);
-        List<Product> productList = productService.list(cid);
+    public String list(int categoryId, Model model, Page page) {
+        Category category = categoryService.get(categoryId);
+        List<Product> productList = productService.list(categoryId);
         PageHelper.offsetPage(page.getStart(), page.getCount());
         int total = (int) new PageInfo<>(productList).getTotal();
         page.setTotal(total);

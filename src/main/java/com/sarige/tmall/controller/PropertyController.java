@@ -30,14 +30,14 @@ public class PropertyController {
     public String add(Property property) {
         System.out.println(property);
         propertyService.add(property);
-        return "redirect:" + new UrlBuilder("admin_property_list").addParam("cid", property.getCategoryId());
+        return "redirect:" + new UrlBuilder("admin_property_list").addParam("categoryId", property.getCategoryId());
     }
 
     @RequestMapping("admin_property_delete")
     public String delete(int id) {
-        Integer cid = propertyService.get(id).getCategoryId();
+        Integer categoryId = propertyService.get(id).getCategoryId();
         propertyService.delete(id);
-        return "redirect:" + new UrlBuilder("admin_property_list").addParam("cid", cid);
+        return "redirect:" + new UrlBuilder("admin_property_list").addParam("categoryId", categoryId);
     }
 
     @RequestMapping("admin_property_edit")
@@ -52,14 +52,14 @@ public class PropertyController {
     @RequestMapping("admin_property_update")
     public String update(Property property) {
         propertyService.update(property);
-        return "redirect:" + new UrlBuilder("admin_property_list").addParam("cid", property.getCategoryId());
+        return "redirect:" + new UrlBuilder("admin_property_list").addParam("categoryId", property.getCategoryId());
     }
 
     @RequestMapping("admin_property_list")
-    public String list(int cid, Model model, Page page) {
-        Category category = categoryService.get(cid);
+    public String list(int categoryId, Model model, Page page) {
+        Category category = categoryService.get(categoryId);
         PageHelper.offsetPage(page.getStart(), page.getCount());
-        List<Property> propertyList = propertyService.list(cid);
+        List<Property> propertyList = propertyService.list(categoryId);
         int total = (int) new PageInfo<>(propertyList).getTotal();
         page.setTotal(total);
         page.setParam("&cid=" + category.getId());

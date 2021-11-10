@@ -23,4 +23,6 @@ public interface OrderItemService {
 
     int getSaleCount(int productId);
 
+    List<OrderItem> listByUserId(int userId);
+
 }

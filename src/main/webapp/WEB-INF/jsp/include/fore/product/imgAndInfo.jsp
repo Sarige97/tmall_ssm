@@ -108,6 +108,8 @@
                 }
             );
 
+
+
             return true;
         });
 
@@ -222,7 +224,7 @@
         </div>
 
         <div class="buyDiv">
-            <a class="buyLink" href="forebuyone?pid=${product.id}"><button class="buyButton">立即购买</button></a>
+            <a class="buyLink" href="forebuyone?productId=${product.id}"><button class="buyButton">立即购买</button></a>
             <a href="#nowhere" class="addCartLink"><button class="addCartButton"><span class="glyphicon glyphicon-shopping-cart"></span>加入购物车</button></a>
         </div>
     </div>

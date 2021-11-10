@@ -87,6 +87,15 @@ public class OrderItemServiceImpl implements OrderItemService {
         return result;
     }
 
+    @Override
+    public List<OrderItem> listByUserId(int userId) {
+        OrderItemExample orderItemExample = new OrderItemExample();
+        orderItemExample.or().andUserIdEqualTo(userId).andOrderIdIsNull();
+        List<OrderItem> orderItemList = orderItemMapper.selectByExample(orderItemExample);
+        setProduct(orderItemList);
+        return orderItemList;
+    }
+
     public void setProduct(List<OrderItem> orderItemList) {
         for (OrderItem orderitem : orderItemList) {
             setProduct(orderitem);

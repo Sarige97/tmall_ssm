@@ -107,6 +107,17 @@ public class ProductServiceImpl implements ProductService {
         }
     }
 
+    @Override
+    public List<Product> search(String keyword) {
+        ProductExample example = new ProductExample();
+        example.createCriteria().andNameLike("%" + keyword + "%");
+        example.setOrderByClause("id desc");
+        List<Product> result = productMapper.selectByExample(example);
+        setProductImage(result);
+        setCategory(result);
+        return result;
+    }
+
     public void setProductImage(Product product) {
         ProductImageExample productimageExample = new ProductImageExample();
         productimageExample.or().andProductIdEqualTo(product.getId());
@@ -121,4 +132,18 @@ public class ProductServiceImpl implements ProductService {
             setProductImage(product);
         }
     }
+
+    public void setCategory(List<Product> productList) {
+        for (Product product : productList) {
+            setCategory(product);
+        }
+    }
+
+    public void setCategory(Product product) {
+        Integer categoryId = product.getCategoryId();
+        Category category = categoryMapper.selectByPrimaryKey(categoryId);
+        product.setCategory(category);
+    }
+
+
 }
