@@ -15,6 +15,7 @@ import org.springframework.web.util.HtmlUtils;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -200,7 +201,69 @@ public class ForeController {
         }
         return "redirect:" + new UrlBuilder("forebuy").addParam("orderItemId", orderItemId);
     }
+
+    @RequestMapping("forebuy")
+    public String buy(Model model, String[] orderItemId, HttpSession session) {
+        List<OrderItem> orderItemList = new ArrayList<>();
+        float total = 0;
+
+        for (String strId : orderItemId) {
+            int id = Integer.parseInt(strId);
+            OrderItem orderItem = orderItemService.get(id);
+            total += orderItem.getProduct().getPromotePrice() * orderItem.getNumber();
+            orderItemList.add(orderItem);
+        }
+
+        session.setAttribute("orderItemList", orderItemList);
+        model.addAttribute("total", total);
+        return "fore/buy";
+    }
+
+    @ResponseBody
+    @RequestMapping("foreaddCart")
+    public String addCart(int pid, int num, Model model, HttpSession session) {
+        Product p = productService.get(pid);
+        User user = (User) session.getAttribute("user");
+        boolean found = false;
+
+        List<OrderItem> orderItemList = orderItemService.listByUserId(user.getId());
+        for (OrderItem orderItem : orderItemList) {
+            if (orderItem.getProduct().getId().intValue() == p.getId().intValue()) {
+                orderItem.setNumber(orderItem.getNumber() + num);
+                orderItemService.update(orderItem);
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            OrderItem orderItem = new OrderItem();
+            orderItem.setUserId(user.getId());
+            orderItem.setNumber(num);
+            orderItem.setProductId(pid);
+            orderItemService.add(orderItem);
+        }
+        return "success";
+    }
+
+    @RequestMapping("forecart")
+    public String cart(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        List<OrderItem> orderItemList = orderItemService.listByUserId(user.getId());
+        for (OrderItem orderItem : orderItemList) {
+            Product product = orderItem.getProduct();
+            List<ProductImage> productImageList = productImageService.list(product.getId(), ProductImageService.type_single);
+            product.setFirstProductImage(productImageList.get(0));
+        }
+        model.addAttribute("orderItemList", orderItemList);
+        return "fore/cart";
+    }
+
+
 }
+
+
+
 
 
 

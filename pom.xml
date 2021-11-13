@@ -24,7 +24,7 @@
         <commons-logging.version>1.2</commons-logging.version>
         <commons-fileupload.version>1.4</commons-fileupload.version>
         <commons-io.version>20030203.000550</commons-io.version>
-        <commons-lang.version>20030203.000129</commons-lang.version>
+        <commons-lang.version>2.6</commons-lang.version>
         <commons-net.version>20030805.205232</commons-net.version>
         <aopalliance.version>1.0</aopalliance.version>
         <mybatis-generator.version>1.4.0</mybatis-generator.version>

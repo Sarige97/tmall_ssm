@@ -67,27 +67,27 @@
 
                         <div class="orderPageOrderItem">
                             <table width="800px" align="center" class="orderPageOrderItemTable">
-                                <c:forEach items="${order.orderItems}" var="oi">
+                                <c:forEach items="${order.orderItems}" var="orderItem">
                                     <tr>
                                         <td align="left">
                                                 <%--
                                                 --%>
                                             <img width="40px" height="40px"
-                                            src="img/productSingle/${oi.product.firstProductImage.id}.jpg">
+                                            src="img/productSingle/${orderItem.product.firstProductImage.id}.jpg">
                                         </td>
 
                                         <td>
-                                            <a href="foreproduct?pid=${oi.product.id}">
-                                                <span>${oi.product.name}</span>
+                                            <a href="foreproduct?pid=${orderItem.product.id}">
+                                                <span>${orderItem.product.name}</span>
                                             </a>
                                         </td>
                                         <td align="right">
 
-                                            <span class="text-muted">${oi.number}个</span>
+                                            <span class="text-muted">${orderItem.number}个</span>
                                         </td>
                                         <td align="right">
 
-                                            <span class="text-muted">单价：￥${oi.product.promotePrice}</span>
+                                            <span class="text-muted">单价：￥${orderItem.product.promotePrice}</span>
                                         </td>
 
                                     </tr>

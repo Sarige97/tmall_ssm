@@ -36,7 +36,18 @@
     <bean name="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
-
     <tx:annotation-driven transaction-manager="txManager"/>
+
+    <!--配置拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/fore*"/>
+            <bean class="com.sarige.tmall.interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/fore*"/>
+            <bean class="com.sarige.tmall.interceptor.ForeDataInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
 </beans>

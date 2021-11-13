@@ -1,5 +1,7 @@
 import com.sarige.tmall.util.Page;
 import com.sarige.tmall.util.UrlBuilder;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
 
 import java.sql.Connection;
@@ -20,6 +22,12 @@ public class TestTmall {
         urlBuilder.addParam("name", "tom");
         urlBuilder.addParam("age", "13");
         System.out.println(urlBuilder.toString());
+    }
+
+    @Test
+    public void test3() {
+        Log log = LogFactory.getLog(TestTmall.class);
+        log.info("1234567");
     }
 
     public static void main(String[] args) {

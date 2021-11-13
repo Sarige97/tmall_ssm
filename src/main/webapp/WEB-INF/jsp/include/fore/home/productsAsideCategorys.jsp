@@ -22,8 +22,8 @@ $(function(){
 				<c:forEach items="${ps}" var="p">
 					<c:if test="${!empty p.subTitle}">
 						<a href="foreproduct?pid=${p.id}">
-							<c:forEach items="${fn:split(p.subTitle, ' ')}" var="title" varStatus="st">
-								<c:if test="${st.index==0}">
+							<c:forEach items="${fn:split(p.subTitle, ' ')}" var="title" varStatus="status">
+								<c:if test="${status.index==0}">
 									${title}
 								</c:if>
 							</c:forEach>

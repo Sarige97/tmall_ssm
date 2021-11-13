@@ -11,13 +11,13 @@
             <input type="text" placeholder="平衡车 原汁机" name="keyword">
             <button class="searchButton" type="submit">搜天猫</button>
             <div class="searchBelow">
-                <c:forEach items="${categoryList}" var="c" varStatus="st">
-                    <c:if test="${st.count>=8 and st.count<=11}">
+                <c:forEach items="${categoryList}" var="c" varStatus="status">
+                    <c:if test="${status.count>=8 and status.count<=11}">
                     <span>
                         <a href="forecategory?cid=${c.id}">
                                 ${c.name}
                         </a>
-                        <c:if test="${st.count!=11}">
+                        <c:if test="${status.count!=11}">
                             <span>|</span>
                         </c:if>
                     </span>
