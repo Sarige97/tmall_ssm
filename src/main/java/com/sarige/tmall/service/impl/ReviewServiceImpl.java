@@ -63,6 +63,8 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public int getCount(int productId) {
-        return 0;
+        ReviewExample reviewExample = new ReviewExample();
+        reviewExample.or().andProductIdEqualTo(productId);
+        return  (int)reviewMapper.countByExample(reviewExample);
     }
 }

@@ -22,6 +22,11 @@ public class UrlBuilder {
         return this;
     }
 
+    public UrlBuilder addParam(String key, float value) {
+        urlParams.put(key, String.valueOf(value));
+        return this;
+    }
+
     public String toString() {
         StringBuilder url = new StringBuilder();
         url.append(baseUrl);

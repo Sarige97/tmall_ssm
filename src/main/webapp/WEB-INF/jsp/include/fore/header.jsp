@@ -70,21 +70,6 @@
                 alert("这个功能没做，蛤蛤~");
             });
 
-            $("#myCart").click(function () {
-                var page = "forecheckLogin";
-                $.get(
-                    page,
-                    function (result) {
-                        if ("success" == result) {
-                            location.href = $("#myCart").attr("href");
-                        } else {
-                            $("#loginModal").modal('show');
-                        }
-                    }
-                );
-                return false;
-            });
-
         });
     </script>
 </head>

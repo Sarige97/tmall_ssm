@@ -1,6 +1,7 @@
 package com.sarige.tmall.service;
 
 import com.sarige.tmall.pojo.Order;
+import com.sarige.tmall.pojo.OrderItem;
 
 import java.util.List;
 
@@ -21,4 +22,8 @@ public interface OrderService {
     Order get(int orderId);
 
     List<Order> list();
+
+    List<Order> list(int userId, String excludeStatus);
+
+    float add(Order order, List<OrderItem> orderItemList);
 }

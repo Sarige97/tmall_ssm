@@ -1,34 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" isELIgnored="false"%>
+         pageEncoding="UTF-8" isELIgnored="false" %>
 
 <script>
     var deleteOrderItem = false;
     var deleteOrderItemid = 0;
-    $(function(){
+    $(function () {
 
-        $("a.deleteOrderItem").click(function(){
+        $("a.deleteOrderItem").click(function () {
             deleteOrderItem = false;
             var oiid = $(this).attr("oiid")
             deleteOrderItemid = oiid;
             $("#deleteConfirmModal").modal('show');
         });
-        $("button.deleteConfirmButton").click(function(){
+        $("button.deleteConfirmButton").click(function () {
             deleteOrderItem = true;
             $("#deleteConfirmModal").modal('hide');
         });
 
         $('#deleteConfirmModal').on('hidden.bs.modal', function (e) {
-            if(deleteOrderItem){
-                var page="foredeleteOrderItem";
+            if (deleteOrderItem) {
+                var page = "foredeleteOrderItem";
                 $.post(
                     page,
-                    {"oiid":deleteOrderItemid},
-                    function(result){
-                        if("success"==result){
-                            $("tr.cartProductItemTR[oiid="+deleteOrderItemid+"]").hide();
-                        }
-                        else{
-                            location.href="loginPage";
+                    {"orderItemId": deleteOrderItemid},
+                    function (result) {
+                        if ("success" == result) {
+                            $("tr.cartProductItemTR[oiid=" + deleteOrderItemid + "]").hide();
+                        } else {
+                            location.href = "loginPage";
                         }
                     }
                 );
@@ -36,40 +35,38 @@
             }
         })
 
-        $("img.cartProductItemIfSelected").click(function(){
+        $("img.cartProductItemIfSelected").click(function () {
             var selectit = $(this).attr("selectit")
-            if("selectit"==selectit){
-                $(this).attr("src","img/site/cartNotSelected.png");
-                $(this).attr("selectit","false")
-                $(this).parents("tr.cartProductItemTR").css("background-color","#fff");
-            }
-            else{
-                $(this).attr("src","img/site/cartSelected.png");
-                $(this).attr("selectit","selectit")
-                $(this).parents("tr.cartProductItemTR").css("background-color","#FFF8E1");
+            if ("selectit" == selectit) {
+                $(this).attr("src", "img/site/cartNotSelected.png");
+                $(this).attr("selectit", "false")
+                $(this).parents("tr.cartProductItemTR").css("background-color", "#fff");
+            } else {
+                $(this).attr("src", "img/site/cartSelected.png");
+                $(this).attr("selectit", "selectit")
+                $(this).parents("tr.cartProductItemTR").css("background-color", "#FFF8E1");
             }
             syncSelect();
             syncCreateOrderButton();
             calcCartSumPriceAndNumber();
         });
-        $("img.selectAllItem").click(function(){
+        $("img.selectAllItem").click(function () {
             var selectit = $(this).attr("selectit")
-            if("selectit"==selectit){
-                $("img.selectAllItem").attr("src","img/site/cartNotSelected.png");
-                $("img.selectAllItem").attr("selectit","false")
-                $(".cartProductItemIfSelected").each(function(){
-                    $(this).attr("src","img/site/cartNotSelected.png");
-                    $(this).attr("selectit","false");
-                    $(this).parents("tr.cartProductItemTR").css("background-color","#fff");
+            if ("selectit" == selectit) {
+                $("img.selectAllItem").attr("src", "img/site/cartNotSelected.png");
+                $("img.selectAllItem").attr("selectit", "false")
+                $(".cartProductItemIfSelected").each(function () {
+                    $(this).attr("src", "img/site/cartNotSelected.png");
+                    $(this).attr("selectit", "false");
+                    $(this).parents("tr.cartProductItemTR").css("background-color", "#fff");
                 });
-            }
-            else{
-                $("img.selectAllItem").attr("src","img/site/cartSelected.png");
-                $("img.selectAllItem").attr("selectit","selectit")
-                $(".cartProductItemIfSelected").each(function(){
-                    $(this).attr("src","img/site/cartSelected.png");
-                    $(this).attr("selectit","selectit");
-                    $(this).parents("tr.cartProductItemTR").css("background-color","#FFF8E1");
+            } else {
+                $("img.selectAllItem").attr("src", "img/site/cartSelected.png");
+                $("img.selectAllItem").attr("selectit", "selectit")
+                $(".cartProductItemIfSelected").each(function () {
+                    $(this).attr("src", "img/site/cartSelected.png");
+                    $(this).attr("selectit", "selectit");
+                    $(this).parents("tr.cartProductItemTR").css("background-color", "#FFF8E1");
                 });
             }
             syncCreateOrderButton();
@@ -77,125 +74,127 @@
 
         });
 
-        $(".orderItemNumberSetting").keyup(function(){
-            var pid=$(this).attr("pid");
-            var stock= $("span.orderItemStock[pid="+pid+"]").text();
-            var price= $("span.orderItemPromotePrice[pid="+pid+"]").text();
+        $(".orderItemNumberSetting").keyup(function () {
+            var pid = $(this).attr("pid");
+            var stock = $("span.orderItemStock[pid=" + pid + "]").text();
+            var price = $("span.orderItemPromotePrice[pid=" + pid + "]").text();
 
-            var num= $(".orderItemNumberSetting[pid="+pid+"]").val();
+            var num = $(".orderItemNumberSetting[pid=" + pid + "]").val();
             num = parseInt(num);
-            if(isNaN(num))
-                num= 1;
-            if(num<=0)
+            if (isNaN(num))
                 num = 1;
-            if(num>stock)
+            if (num <= 0)
+                num = 1;
+            if (num > stock)
                 num = stock;
 
-            syncPrice(pid,num,price);
+            syncPrice(pid, num, price);
         });
 
-        $(".numberPlus").click(function(){
+        $(".numberPlus").click(function () {
 
-            var pid=$(this).attr("pid");
-            var stock= $("span.orderItemStock[pid="+pid+"]").text();
-            var price= $("span.orderItemPromotePrice[pid="+pid+"]").text();
-            var num= $(".orderItemNumberSetting[pid="+pid+"]").val();
+            var pid = $(this).attr("pid");
+            var stock = $("span.orderItemStock[pid=" + pid + "]").text();
+            var price = $("span.orderItemPromotePrice[pid=" + pid + "]").text();
+            var num = $(".orderItemNumberSetting[pid=" + pid + "]").val();
 
             num++;
-            if(num>stock)
+            if (num > stock)
                 num = stock;
-            syncPrice(pid,num,price);
+            syncPrice(pid, num, price);
         });
-        $(".numberMinus").click(function(){
-            var pid=$(this).attr("pid");
-            var stock= $("span.orderItemStock[pid="+pid+"]").text();
-            var price= $("span.orderItemPromotePrice[pid="+pid+"]").text();
+        $(".numberMinus").click(function () {
+            var pid = $(this).attr("pid");
+            var stock = $("span.orderItemStock[pid=" + pid + "]").text();
+            var price = $("span.orderItemPromotePrice[pid=" + pid + "]").text();
 
-            var num= $(".orderItemNumberSetting[pid="+pid+"]").val();
+            var num = $(".orderItemNumberSetting[pid=" + pid + "]").val();
             --num;
-            if(num<=0)
-                num=1;
-            syncPrice(pid,num,price);
+            if (num <= 0)
+                num = 1;
+            syncPrice(pid, num, price);
         });
 
-        $("button.createOrderButton").click(function(){
+        $("button.createOrderButton").click(function () {
             var params = "";
-            $(".cartProductItemIfSelected").each(function(){
-                if("selectit"==$(this).attr("selectit")){
+            $(".cartProductItemIfSelected").each(function () {
+                if ("selectit" == $(this).attr("selectit")) {
                     var oiid = $(this).attr("oiid");
-                    params += "&oiid="+oiid;
+                    params += "&orderItemIds=" + oiid;
                 }
             });
             params = params.substring(1);
-            location.href="forebuy?"+params;
+            location.href = "forebuy?" + params;
         });
 
     })
 
-    function syncCreateOrderButton(){
+    function syncCreateOrderButton() {
         var selectAny = false;
-        $(".cartProductItemIfSelected").each(function(){
-            if("selectit"==$(this).attr("selectit")){
+        $(".cartProductItemIfSelected").each(function () {
+            if ("selectit" == $(this).attr("selectit")) {
                 selectAny = true;
             }
         });
 
-        if(selectAny){
-            $("button.createOrderButton").css("background-color","#C40000");
+        if (selectAny) {
+            $("button.createOrderButton").css("background-color", "#C40000");
             $("button.createOrderButton").removeAttr("disabled");
-        }
-        else{
-            $("button.createOrderButton").css("background-color","#AAAAAA");
-            $("button.createOrderButton").attr("disabled","disabled");
+        } else {
+            $("button.createOrderButton").css("background-color", "#AAAAAA");
+            $("button.createOrderButton").attr("disabled", "disabled");
         }
 
     }
-    function syncSelect(){
+
+    function syncSelect() {
         var selectAll = true;
-        $(".cartProductItemIfSelected").each(function(){
-            if("false"==$(this).attr("selectit")){
+        $(".cartProductItemIfSelected").each(function () {
+            if ("false" == $(this).attr("selectit")) {
                 selectAll = false;
             }
         });
 
-        if(selectAll)
-            $("img.selectAllItem").attr("src","img/site/cartSelected.png");
+        if (selectAll)
+            $("img.selectAllItem").attr("src", "img/site/cartSelected.png");
         else
-            $("img.selectAllItem").attr("src","img/site/cartNotSelected.png");
+            $("img.selectAllItem").attr("src", "img/site/cartNotSelected.png");
 
     }
-    function calcCartSumPriceAndNumber(){
+
+    function calcCartSumPriceAndNumber() {
         var sum = 0;
         var totalNumber = 0;
-        $("img.cartProductItemIfSelected[selectit='selectit']").each(function(){
+        $("img.cartProductItemIfSelected[selectit='selectit']").each(function () {
             var oiid = $(this).attr("oiid");
-            var price =$(".cartProductItemSmallSumPrice[oiid="+oiid+"]").text();
+            var price = $(".cartProductItemSmallSumPrice[oiid=" + oiid + "]").text();
             price = price.replace(/,/g, "");
             price = price.replace(/￥/g, "");
             sum += new Number(price);
 
-            var num =$(".orderItemNumberSetting[oiid="+oiid+"]").val();
+            var num = $(".orderItemNumberSetting[oiid=" + oiid + "]").val();
             totalNumber += new Number(num);
 
         });
 
-        $("span.cartSumPrice").html("￥"+formatMoney(sum));
-        $("span.cartTitlePrice").html("￥"+formatMoney(sum));
+        $("span.cartSumPrice").html("￥" + formatMoney(sum));
+        $("span.cartTitlePrice").html("￥" + formatMoney(sum));
         $("span.cartSumNumber").html(totalNumber);
     }
-    function syncPrice(pid,num,price){
-        $(".orderItemNumberSetting[pid="+pid+"]").val(num);
-        var cartProductItemSmallSumPrice = formatMoney(num*price);
-        $(".cartProductItemSmallSumPrice[pid="+pid+"]").html("￥"+cartProductItemSmallSumPrice);
+
+    function syncPrice(pid, num, price) {
+        $(".orderItemNumberSetting[pid=" + pid + "]").val(num);
+        var cartProductItemSmallSumPrice = formatMoney(num * price);
+        $(".cartProductItemSmallSumPrice[pid=" + pid + "]").html("￥" + cartProductItemSmallSumPrice);
         calcCartSumPriceAndNumber();
 
         var page = "forechangeOrderItem";
         $.post(
             page,
-            {"pid":pid,"number":num},
-            function(result){
-                if("success"!=result){
-                    location.href="login.jsp";
+            {"productId": pid, "number": num},
+            function (result) {
+                if ("success" != result) {
+                    location.href = "login.jsp";
                 }
             }
         );
@@ -231,13 +230,16 @@
             <c:forEach items="${orderItemList}" var="orderItem">
                 <tr oiid="${orderItem.id}" class="cartProductItemTR">
                     <td>
-                        <img selectit="false" oiid="${orderItem.id}" class="cartProductItemIfSelected" src="img/site/cartNotSelected.png">
+                        <img selectit="false" oiid="${orderItem.id}" class="cartProductItemIfSelected"
+                             src="img/site/cartNotSelected.png">
                         <a style="display:none" href="#nowhere"><img src="img/site/cartSelected.png"></a>
-                        <img class="cartProductImg"  src="img/productSingle_middle/${orderItem.product.firstProductImage.id}.jpg">
+                        <img class="cartProductImg"
+                             src="img/productSingle_middle/${orderItem.product.firstProductImage.id}.jpg">
                     </td>
                     <td>
                         <div class="cartProductLinkOutDiv">
-                            <a href="foreproduct?pid=${orderItem.product.id}" class="cartProductLink">${orderItem.product.name}</a>
+                            <a href="foreproduct?pid=${orderItem.product.id}"
+                               class="cartProductLink">${orderItem.product.name}</a>
                             <div class="cartProductLinkInnerDiv">
                                 <img src="img/site/creditcard.png" title="支持信用卡支付">
                                 <img src="img/site/7day.png" title="消费者保障服务,承诺7天退货">
@@ -248,23 +250,29 @@
                     </td>
                     <td>
                         <span class="cartProductItemOringalPrice">￥${orderItem.product.originalPrice}</span>
-                        <span  class="cartProductItemPromotionPrice">￥${orderItem.product.promotePrice}</span>
+                        <span class="cartProductItemPromotionPrice">￥${orderItem.product.promotePrice}</span>
 
                     </td>
                     <td>
 
                         <div class="cartProductChangeNumberDiv">
-                            <span class="hidden orderItemStock " pid="${orderItem.product.id}">${orderItem.product.stock}</span>
-                            <span class="hidden orderItemPromotePrice " pid="${orderItem.product.id}">${orderItem.product.promotePrice}</span>
+                            <span class="hidden orderItemStock "
+                                  pid="${orderItem.product.id}">${orderItem.product.stock}</span>
+                            <span class="hidden orderItemPromotePrice "
+                                  pid="${orderItem.product.id}">${orderItem.product.promotePrice}</span>
                             <a pid="${orderItem.product.id}" class="numberMinus" href="#nowhere">-</a>
-                            <input pid="${orderItem.product.id}" oiid="${orderItem.id}" class="orderItemNumberSetting" autocomplete="off" value="${orderItem.number}">
-                            <a stock="${orderItem.product.stock}" pid="${orderItem.product.id}" class="numberPlus" href="#nowhere">+</a>
+                            <input pid="${orderItem.product.id}" oiid="${orderItem.id}" class="orderItemNumberSetting"
+                                   autocomplete="off" value="${orderItem.number}">
+                            <a stock="${orderItem.product.stock}" pid="${orderItem.product.id}" class="numberPlus"
+                               href="#nowhere">+</a>
                         </div>
 
                     </td>
-                    <td >
-							<span class="cartProductItemSmallSumPrice" oiid="${orderItem.id}" pid="${orderItem.product.id}" >
-							￥<fmt:formatNumber type="number" value="${orderItem.product.promotePrice*orderItem.number}" minFractionDigits="2"/>
+                    <td>
+							<span class="cartProductItemSmallSumPrice" oiid="${orderItem.id}"
+                                  pid="${orderItem.product.id}">
+							￥<fmt:formatNumber type="number" value="${orderItem.product.promotePrice*orderItem.number}"
+                                               minFractionDigits="2"/>
 							</span>
 
                     </td>
@@ -284,11 +292,11 @@
         <!-- 		<a href="#">删除</a> -->
 
         <div class="pull-right">
-            <span>已选商品 <span class="cartSumNumber" >0</span> 件</span>
+            <span>已选商品 <span class="cartSumNumber">0</span> 件</span>
 
             <span>合计 (不含运费): </span>
-            <span class="cartSumPrice" >￥0.00</span>
-            <button class="createOrderButton" disabled="disabled" >结  算</button>
+            <span class="cartSumPrice">￥0.00</span>
+            <button class="createOrderButton" disabled="disabled">结 算</button>
         </div>
 
     </div>
